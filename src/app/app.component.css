@@ -1,0 +1,4 @@
+.div-tarefas {
+  display: flex;
+  flex-direction: row;
+}
