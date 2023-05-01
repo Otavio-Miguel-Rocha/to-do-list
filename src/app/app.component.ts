@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
 interface Tarefa {
-  codigoTarefa: number;
-  nome: string;
+  titulo: string;
+  descricao: string;
   categoria: string;
 }
 
@@ -13,27 +13,30 @@ interface Tarefa {
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    console.log(localStorage.getItem("Tarefas"));
+    const lista: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
+    if (lista != null) {
+      this.tarefas = lista;
+    }
   }
   tarefas: Tarefa[] = [];
-  codigo: number = 0;
 
   tarefa: Tarefa = {
-    codigoTarefa: 0,
-    nome: "",
+    titulo: "",
+    descricao: "",
     categoria: "",
   };
 
   cadastrarUsuario(): void {
     const tarefa: Tarefa = {
-      codigoTarefa: this.codigo++,
-      nome: this.tarefa.nome,
+      titulo: this.tarefa.titulo,
+      descricao: this.tarefa.descricao,
       categoria: this.tarefa.categoria,
     };
 
     this.tarefas.push(tarefa);
     localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
-    this.tarefa.nome = "";
+    this.tarefa.titulo = "";
+    this.tarefa.descricao = "";
   }
   remover(codigo: number): void {
     this.tarefas.splice(codigo, 1);

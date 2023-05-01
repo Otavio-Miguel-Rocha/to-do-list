@@ -1,26 +1,90 @@
-<h1>TO-DO-LIST</h1>
-
-<input
-  placeholder="Cadastrar Tarefa"
-  [(ngModel)]="tarefa.nome"
-  [value]="valor"
-/>
-
-<select [(ngModel)]="tarefa.categoria">
-  <option>To-Do</option>
-  <option>Doing</option>
-  <option>Done</option>
-</select>
-
-<button (click)="cadastrarUsuario()">Cadastrar</button>
-
-<div *ngFor="let tarefa of tarefas; index as indice" class="div-tarefas">
-  <h3>Tarefa: {{ tarefa.nome }}</h3>
-  <select>
-    <option>{{ tarefa.categoria }}</option>
-    <option>To-Do</option>
-    <option>Doing</option>
-    <option>Done</option>
-  </select>
-  <button (click)="remover(indice)">Remover</button>
-</div>
+<header>
+  <app-nav></app-nav>
+</header>
+<main>
+  <section id="section">
+    <div id="grid-cadastro-vizualizacao">
+      <div class="main-square">
+        <div id="cadastro-div">
+          <div id="informations-cadastro">
+            <div class="grid-elements">
+              <h1>Título:</h1>
+              <input
+                placeholder="Insira o título aqui..."
+                maxlength="30"
+                [(ngModel)]="tarefa.titulo"
+                id="tituloTarefa"
+                class="inputs-buttons-cadastro"
+              />
+            </div>
+            <div class="grid-elements grid-inside">
+              <div class="grid-elements">
+                <h1>Descrição:</h1>
+                <textarea
+                  rows="8"
+                  cols="50"
+                  placeholder="Insira a descrição aqui..."
+                  [(ngModel)]="tarefa.descricao"
+                  class="inputs-buttons-cadastro"
+                  id="descricao-tarefa"
+                ></textarea>
+              </div>
+              <div id="grid-categoria-cadastrar">
+                <div class="grid-elements">
+                  <h1>Categoria:</h1>
+                  <select
+                    [(ngModel)]="tarefa.categoria"
+                    class="inputs-buttons-cadastro"
+                    id="select-categoria"
+                  >
+                    <option>To-Do</option>
+                    <option>Doing</option>
+                    <option>Done</option>
+                  </select>
+                </div>
+                <div class="grid-elements"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-square">
+        <div id="tarefa-sendo-cadastrada">
+          <h1 class="grid-view">Tarefa Sendo Cadastrada</h1>
+          <div>
+            <h2>Título: {{ tarefa.titulo }}</h2>
+          </div>
+          <div class="grid-view">
+            <div id="teste">
+              <h3>Descrição:</h3>
+              <p>{{ tarefa.descricao }}</p>
+            </div>
+          </div>
+          <div>
+            <h2>Categoria: {{ tarefa.categoria }}</h2>
+          </div>
+          <div class="grid-view">
+            <button
+              (click)="cadastrarUsuario()"
+              id="botao-cadastro"
+              class="inputs-buttons-cadastro"
+            >
+              Cadastrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div *ngFor="let tarefa of tarefas; index as indice" class="div-tarefas">
+    <h3>Tarefa: {{ tarefa.titulo }}</h3>
+    <p>Descrição: {{ tarefa.descricao }}</p>
+    <select>
+      <option>{{ tarefa.categoria }}</option>
+      <option>To-Do</option>
+      <option>Doing</option>
+      <option>Done</option>
+    </select>
+    <button (click)="remover(indice)">Remover</button>
+  </div>
+</main>
