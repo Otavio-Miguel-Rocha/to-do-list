@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
     localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
     this.tarefa.titulo = "";
     this.tarefa.descricao = "";
+    this.tarefa.categoria = "Selecione uma Categoria";
   }
   remover(codigo: number): void {
     this.tarefas.splice(codigo, 1);
