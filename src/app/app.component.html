@@ -3,34 +3,6 @@
 </header>
 <main>
   <section id="main-grid">
-    <!-- LEFT-GRID-LIST -->
-    <div class="grid-show-default">
-      <div *ngFor="let tarefa of tarefas; index as indice" class="div-tarefas">
-        <div class="tarefa-registrada">
-          <div id="tittle-tarefa">
-            <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>
-          </div>
-          <div class="description-div">
-            <p class="wordBreak">Descrição: {{ tarefa.descricao }}</p>
-          </div>
-        </div>
-        <div id="right-grid-inputs-list">
-          <select
-            class="buttons-inputs-list"
-            (click)="mudarCategoria(tarefa.categoria, indice)"
-            [(ngModel)]="tarefa.categoria"
-          >
-            <option>Selecione uma Categoria</option>
-            <option>To-Do</option>
-            <option>Doing</option>
-            <option>Done</option>
-          </select>
-          <button (click)="remover(indice)" class="buttons-inputs-list">
-            Remover
-          </button>
-        </div>
-      </div>
-    </div>
     <!-- RIGHT-GRID-REGISTER -->
     <div class="grid-show-default">
       <div class="div-main-register">
@@ -62,7 +34,7 @@
           class="inputs-buttons-cadastro"
           id="select-categoria"
         >
-          <option>Selecione uma Categoria</option>
+        
           <option>To-Do</option>
           <option>Doing</option>
           <option>Done</option>
@@ -77,8 +49,8 @@
         </h1>
 
         <h2 class="text-div-main-register">Título:</h2>
-        <div class="description-view">
-          <p class="wordBreak">
+        <div class="tittle-view-div">
+          <p class="wordBreak" id="tittle-vie">
             {{ tarefa.titulo }}
           </p>
         </div>
@@ -102,4 +74,115 @@
       </div>
     </div>
   </section>
+  <section id="grid-tasks">
+    <div class="tittle-list-grid" style="border-left: 0px;">
+      <h2>To Do</h2>
+      <div *ngFor="let to_do of to_dos; index as indice;">
+        <div class="tarefa-registrada">
+          <div id="tittle-tarefa">
+            <h3 class="wordBreak">Tarefa: {{ to_do.titulo }}</h3>
+          </div>
+          <div class="description-div">
+            <p class="wordBreak">Descrição: {{ to_do.descricao }}</p>
+          </div>
+        </div>
+        <div id="right-grid-inputs-list">
+          <select
+            class="buttons-inputs-list"
+            (change)="mudarCategoria(to_do)"
+            [(ngModel)]="to_do.categoria"
+          >
+            <option>To-Do</option>
+            <option>Doing</option>
+            <option>Done</option>
+          </select>
+          <button (click)="remover(indice,1, to_do)" class="buttons-inputs-list">
+            Remover
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="tittle-list-grid">
+      <h2>Doing</h2>
+      <div *ngFor="let doing of doings; index as indice">
+        <div class="tarefa-registrada">
+          <div id="tittle-tarefa">
+            <h3 class="wordBreak">Tarefa: {{ doing.titulo }}</h3>
+          </div>
+          <div class="description-div">
+            <p class="wordBreak">Descrição: {{ doing.descricao }}</p>
+          </div>
+        </div>
+        <div id="right-grid-inputs-list">
+          <select
+            class="buttons-inputs-list"
+            (change)="mudarCategoria(doing)"
+            [(ngModel)]="doing.categoria"
+          >
+    
+            <option>To-Do</option>
+            <option>Doing</option>
+            <option>Done</option>
+          </select>
+          <button (click)="remover(indice,2, doing)" class="buttons-inputs-list">
+            Remover
+          </button>
+        </div>
+      </div>
+    </div>
+      <div class="tittle-list-grid" style="border-right: 0px;">
+      <h2>Done</h2>
+      <div *ngFor="let done of dones; index as indice">
+        <div class="tarefa-registrada">
+          <div id="tittle-tarefa">
+            <h3 class="wordBreak">Tarefa: {{ done.titulo }}</h3>
+          </div>
+          <div class="description-div">
+            <p class="wordBreak">Descrição: {{ done.descricao }}</p>
+          </div>
+        </div>
+        <div id="right-grid-inputs-list">
+          <select
+            class="buttons-inputs-list"
+            (change)="mudarCategoria(done)"
+            [(ngModel)]="done.categoria"
+          >
+            <option>To-Do</option>
+            <option>Doing</option>
+            <option>Done</option>
+          </select>
+          <button (click)="remover(indice, 3, done)" class="buttons-inputs-list">
+            Remover
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- <div class="grid-show-default">
+    <div *ngFor="let tarefa of tarefas; index as indice" class="div-tarefas">
+      <div class="tarefa-registrada">
+        <div id="tittle-tarefa">
+          <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>
+        </div>
+        <div class="description-div">
+          <p class="wordBreak">Descrição: {{ tarefa.descricao }}</p>
+        </div>
+      </div>
+      <div id="right-grid-inputs-list">
+        <select
+          class="buttons-inputs-list"
+          (click)="mudarCategoria(tarefa.categoria, indice)"
+          [(ngModel)]="tarefa.categoria"
+        >
+          <option>Selecione uma Categoria</option>
+          <option>To-Do</option>
+          <option>Doing</option>
+          <option>Done</option>
+        </select>
+        <button (click)="remover(indice)" class="buttons-inputs-list">
+          Remover
+        </button>
+      </div>
+    </div>
+  </div> -->
 </main>

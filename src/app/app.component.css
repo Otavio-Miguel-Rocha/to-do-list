@@ -13,19 +13,88 @@ header {
 
 /* GRID-MAIN */
 #main-grid {
-  display: grid;
+  display: flex;
   width: 100%;
-  height: 100vh;
-  grid-template-columns: 60% 40%;
+  height: 20%;
+  
 }
 .grid-show-default {
-  flex-direction: column;
+  flex-direction: row;
   display: flex;
-  width: 90%;
-  align-items: center;
-  margin-top: 10%;
+  width: 100%;
+  justify-content: center;
+  margin-top: 2%;
 }
 /* / */
+/* CADASTRO */
+.div-main-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  background-color: rgb(91, 92, 179);
+  max-height: 100%;
+  height: 100%;
+}
+.text-div-main-register {
+  align-self: baseline;
+  margin-left: 10%;
+  background-color: inherit;
+}
+
+.inputs-buttons-cadastro {
+  background-color: white;
+  border: 2px solid rgb(57, 117, 170);
+  color: rgb(57, 117, 170);
+  justify-content: center;
+  align-items: center;
+}
+#tituloTarefa {
+  display: flex;
+  width: 80%;
+  height: 10%;
+  font-size: 20px;
+}
+#descricao-tarefa {
+  display: flex;
+  width: 80%;
+  height: 30%;
+  font-size: 15px;
+  resize: none;
+}
+#select-categoria {
+  display: flex;
+  width: 150px;
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* VISUALIZADOR DO CADASTRO */
+.tittle-view-div{
+  display: flex;
+  width: 80%;
+  height: 20%;
+}
+#tittle-view{
+  font-size: 50px;
+}
+.description-view{
+  display: flex;
+  width: 80%;
+  height: 70%;
+}
+#botao-cadastro {
+  display: flex;
+  width: 35%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  cursor: pointer;
+}
 /* LEFT SIDE TASKS */
 .div-tarefas {
   display: grid;
@@ -71,67 +140,20 @@ header {
   cursor: pointer;
 }
 /* / */
-/* CADASTRO */
-.div-main-register {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* TASKS-LISTS */
+#grid-tasks{
+  display: grid;
   width: 100%;
-  background-color: rgb(91, 92, 179);
-  max-height: 100vh;
+  grid-template-columns: repeat(3, 1fr);
+  height: 100vh;
 }
-.text-div-main-register {
-  align-self: baseline;
-  margin-left: 10%;
-  background-color: inherit;
-}
-
-.inputs-buttons-cadastro {
-  background-color: white;
-  border: 2px solid rgb(57, 117, 170);
-  color: rgb(57, 117, 170);
-  justify-content: center;
-  align-items: center;
-}
-#tituloTarefa {
+.tittle-list-grid{
+  flex-direction: column;
   display: flex;
-  width: 80%;
-  height: 10%;
-  font-size: 20px;
-}
-#descricao-tarefa {
-  display: flex;
-  width: 80%;
-  height: 30%;
-  font-size: 15px;
-  resize: none;
-}
-#select-categoria {
-  display: flex;
-  width: 150px;
-  height: 30px;
-  font-size: 20px;
-  text-align: center;
-  cursor: pointer;
-}
-
-/* VISUALIZADOR DO CADASTRO */
-.viewer-current-register {
-  margin-top: 7%;
-}
-.description-view {
-  display: flex;
-  width: 80%;
+  width: 95%;
   height: 100%;
-}
-
-#botao-cadastro {
-  display: flex;
-  width: 35%;
-  height: 100%;
-  justify-content: center;
+  justify-content: baseline;
   align-items: center;
-  font-size: 25px;
-  cursor: pointer;
+  margin-top: 8%;
+  border-left: 3px solid white;
 }
