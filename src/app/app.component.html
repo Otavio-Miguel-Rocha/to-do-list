@@ -39,28 +39,6 @@
           <option>Doing</option>
           <option>Done</option>
         </select>
-      </div>
-      <div class="div-main-register viewer-current-register">
-        <h1
-          class="text-div-main-register"
-          style="align-self: center; margin-left: 0%"
-        >
-          Tarefa Sendo Cadastrada
-        </h1>
-
-        <h2 class="text-div-main-register">Título:</h2>
-        <div class="tittle-view-div">
-          <p class="wordBreak" id="tittle-vie">
-            {{ tarefa.titulo }}
-          </p>
-        </div>
-
-        <h2 class="text-div-main-register">Descrição:</h2>
-        <div class="description-view">
-          <p class="wordBreak">
-            {{ tarefa.descricao }}
-          </p>
-        </div>
         <h2 class="text-div-main-register">
           Categoria: {{ tarefa.categoria }}
         </h2>
@@ -72,88 +50,107 @@
           Cadastrar
         </button>
       </div>
+
     </div>
   </section>
+
   <section id="grid-tasks">
     <div class="tittle-list-grid" style="border-left: 0px;">
       <h2>To Do</h2>
-      <div *ngFor="let to_do of to_dos; index as indice;">
-        <div class="tarefa-registrada">
-          <div id="tittle-tarefa">
-            <h3 class="wordBreak">Tarefa: {{ to_do.titulo }}</h3>
+      <div 
+      *ngFor="let tarefa of tarefas; index as indice;"
+      class="div-tasks-behind"
+      >
+        <div *ngIf="tarefa.categoria == 'To-Do'"
+      class="div-tasks">
+          <div class="description-view-in-list">
+            <div id="tittle-tarefa">
+              <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>
+            </div>
+            <div class="description-div">
+              <p class="wordBreak">Descrição: {{ tarefa.descricao }}</p>
+            </div>
           </div>
-          <div class="description-div">
-            <p class="wordBreak">Descrição: {{ to_do.descricao }}</p>
+          <div class="description-view-in-list">
+            <select
+              class="buttons-inputs-list"
+              (change)="mudarCategoria()"
+              [(ngModel)]="tarefa.categoria"
+            >
+              <option>To-Do</option>
+              <option>Doing</option>
+              <option>Done</option>
+            </select>
+            <button (click)="remover(tarefa)" class="buttons-inputs-list">
+              Remover
+            </button>
           </div>
-        </div>
-        <div id="right-grid-inputs-list">
-          <select
-            class="buttons-inputs-list"
-            (change)="mudarCategoria(to_do)"
-            [(ngModel)]="to_do.categoria"
-          >
-            <option>To-Do</option>
-            <option>Doing</option>
-            <option>Done</option>
-          </select>
-          <button (click)="remover(indice,1, to_do)" class="buttons-inputs-list">
-            Remover
-          </button>
         </div>
       </div>
     </div>
     <div class="tittle-list-grid">
       <h2>Doing</h2>
-      <div *ngFor="let doing of doings; index as indice">
-        <div class="tarefa-registrada">
-          <div id="tittle-tarefa">
-            <h3 class="wordBreak">Tarefa: {{ doing.titulo }}</h3>
+      <div 
+      *ngFor="let tarefa of tarefas; index as indice;"
+      class="div-tasks-behind"
+      >
+        <div *ngIf="tarefa.categoria == 'Doing'"
+      class="div-tasks">
+          <div class="description-view-in-list">
+            <div id="tittle-tarefa">
+              <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>
+            </div>
+            <div class="description-div">
+              <p class="wordBreak">Descrição: {{ tarefa.descricao }}</p>
+            </div>
           </div>
-          <div class="description-div">
-            <p class="wordBreak">Descrição: {{ doing.descricao }}</p>
+          <div class="description-view-in-list">
+            <select
+              class="buttons-inputs-list"
+              (change)="mudarCategoria()"
+              [(ngModel)]="tarefa.categoria"
+            >
+              <option>To-Do</option>
+              <option>Doing</option>
+              <option>Done</option>
+            </select>
+            <button (click)="remover(tarefa)" class="buttons-inputs-list">
+              Remover
+            </button>
           </div>
-        </div>
-        <div id="right-grid-inputs-list">
-          <select
-            class="buttons-inputs-list"
-            (change)="mudarCategoria(doing)"
-            [(ngModel)]="doing.categoria"
-          >
-    
-            <option>To-Do</option>
-            <option>Doing</option>
-            <option>Done</option>
-          </select>
-          <button (click)="remover(indice,2, doing)" class="buttons-inputs-list">
-            Remover
-          </button>
         </div>
       </div>
     </div>
       <div class="tittle-list-grid" style="border-right: 0px;">
       <h2>Done</h2>
-      <div *ngFor="let done of dones; index as indice">
-        <div class="tarefa-registrada">
-          <div id="tittle-tarefa">
-            <h3 class="wordBreak">Tarefa: {{ done.titulo }}</h3>
+      <div 
+      *ngFor="let tarefa of tarefas; index as indice;"
+      class="div-tasks-behind"
+      >
+        <div *ngIf="tarefa.categoria == 'Done'"
+      class="div-tasks">
+          <div class="description-view-in-list">
+            <div id="tittle-tarefa">
+              <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>
+            </div>
+            <div class="description-div">
+              <p class="wordBreak">Descrição: {{ tarefa.descricao }}</p>
+            </div>
           </div>
-          <div class="description-div">
-            <p class="wordBreak">Descrição: {{ done.descricao }}</p>
+          <div class="description-view-in-list">
+            <select
+              class="buttons-inputs-list"
+              (change)="mudarCategoria()"
+              [(ngModel)]="tarefa.categoria"
+            >
+              <option>To-Do</option>
+              <option>Doing</option>
+              <option>Done</option>
+            </select>
+            <button (click)="remover(tarefa)" class="buttons-inputs-list">
+              Remover
+            </button>
           </div>
-        </div>
-        <div id="right-grid-inputs-list">
-          <select
-            class="buttons-inputs-list"
-            (change)="mudarCategoria(done)"
-            [(ngModel)]="done.categoria"
-          >
-            <option>To-Do</option>
-            <option>Doing</option>
-            <option>Done</option>
-          </select>
-          <button (click)="remover(indice, 3, done)" class="buttons-inputs-list">
-            Remover
-          </button>
         </div>
       </div>
     </div>
