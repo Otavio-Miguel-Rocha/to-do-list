@@ -11,77 +11,6 @@ header {
   word-break: break-all;
 }
 
-/* GRID-MAIN */
-#main-grid {
-  display: flex;
-  width: 100%;
-  height: 20%;
-  
-}
-.grid-show-default {
-  flex-direction: row;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  margin-top: 2%;
-}
-/* / */
-/* CADASTRO */
-.div-main-register {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
-  background-color: black;
-  max-height: 100%;
-  height: 100%;
-}
-.text-div-main-register {
-  align-self: baseline;
-  margin-left: 10%;
-  background-color: inherit;
-}
-
-.inputs-buttons-cadastro {
-  background-color: white;
-  border: 2px solid rgb(57, 117, 170);
-  color: rgb(57, 117, 170);
-  justify-content: center;
-  align-items: center;
-}
-#tituloTarefa {
-  display: flex;
-  width: 80%;
-  height: 10%;
-  font-size: 20px;
-}
-#descricao-tarefa {
-  display: flex;
-  width: 80%;
-  height: 30%;
-  font-size: 15px;
-  resize: none;
-}
-#select-categoria {
-  display: flex;
-  width: 150px;
-  height: 30px;
-  font-size: 20px;
-  text-align: center;
-  cursor: pointer;
-}
-
-#botao-cadastro {
-  display: flex;
-  width: 35%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px;
-  cursor: pointer;
-}
-/* LEFT SIDE TASKS */
 .div-tarefas {
   display: grid;
   grid-template-columns: 80% 20%;
@@ -91,7 +20,7 @@ header {
   margin-top: 3%;
 }
 .tarefa-registrada {
-  color: black;;
+  color: black;
   justify-content: center;
   border: 2px solid white;
 }
@@ -108,56 +37,3 @@ header {
 }
 /* / */
 /* TASKS-LISTS */
-#grid-tasks{
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(3, 1fr);
-  height: 100vh;
-}
-.tittle-list-grid{
-  flex-direction: column;
-  display: flex;
-  width: 95%;
-  height: 100%;
-  justify-content: baseline;
-  align-items: center;
-  margin-top: 8%;
-  border-left: 3px solid black;
-}
-.div-tasks-behind{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: baseline;
-}
-.div-tasks{
-  display: grid;
-  width: 80%;
-  height: 100%;
-  grid-template-columns: 70% 30%;
-  height: max-content;
-  box-sizing: content-box;
-}
-.description-view-in-list{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 30%;
-}
-#right-grid-inputs-list {
-  width: 100%;
-}
-.buttons-inputs-list {
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: 2px solid white;
-}
-.buttons-inputs-list:hover {
-  color: rgb(160, 161, 214);
-  background-color: white;
-  border: 2px solid rgb(160, 161, 214);
-  cursor: pointer;
-}

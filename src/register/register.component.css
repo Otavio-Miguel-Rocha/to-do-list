@@ -1,0 +1,72 @@
+#main-grid {
+  display: flex;
+  width: 100%;
+  height: 20%;
+}
+
+/* UTILITIES */
+.wordBreak {
+  word-break: break-all;
+}
+
+.grid-show-default {
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 2%;
+}
+.div-main-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  background-color: black;
+  max-height: 100%;
+  height: 100%;
+}
+.text-div-main-register {
+  align-self: baseline;
+  margin-left: 10%;
+  background-color: inherit;
+}
+
+.inputs-buttons-cadastro {
+  background-color: white;
+  border: 2px solid rgb(57, 117, 170);
+  color: rgb(57, 117, 170);
+  justify-content: center;
+  align-items: center;
+}
+#tituloTarefa {
+  display: flex;
+  width: 80%;
+  height: 10%;
+  font-size: 20px;
+}
+#descricao-tarefa {
+  display: flex;
+  width: 80%;
+  height: 30%;
+  font-size: 15px;
+  resize: none;
+}
+#select-categoria {
+  display: flex;
+  width: 150px;
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#botao-cadastro {
+  display: flex;
+  width: 35%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  cursor: pointer;
+}
