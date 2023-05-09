@@ -18,6 +18,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {
     const lista: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
+    console.log(lista);
     if (lista != null) {
       this.tarefas = lista;
     }
@@ -36,8 +37,5 @@ export class TasksComponent implements OnInit {
   }
   mudarCategoria(): void {
     localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
-  }
-  registerTask(): void {
-    console.log("tasks");
   }
 }

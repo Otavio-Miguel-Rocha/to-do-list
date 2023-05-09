@@ -1,0 +1,18 @@
+
+<div id="grid-category">
+  <div id="background-dark">
+  </div>
+  <div id="squareRegisterCategory">
+    <div class="teste">
+      <input [(ngModel)]="categoria" placeholder="Insira a nova Categoria">
+      <button (click)="cadastrarTarefa(categoria)">Cadastrar</button>
+      <div class="category-list">
+        <ul>
+          <div *ngFor="let categoria of categorias">
+            <li><h2>{{categoria}}</h2></li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

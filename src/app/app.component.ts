@@ -1,11 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-
-interface Tarefa {
-  codigo: number;
-  titulo: string;
-  descricao: string;
-  categoria: string;
-}
+import { Component, EventEmitter} from "@angular/core";
 
 @Component({
   selector: "app-root",
@@ -13,13 +6,12 @@ interface Tarefa {
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  @Input()
-  tarefa = {};
-
-  @Output()
-  alertTasks = new EventEmitter();
-
-  registerTask(tarefa: Tarefa): void {
-    this.alertTasks.emit(tarefa);
+  openMenu: boolean = false;
+  openMenuCategoryTest(): void {
+    if( this.openMenu === true){
+      this.openMenu = false;
+    } else{
+      this.openMenu = true;
+    }
   }
 }

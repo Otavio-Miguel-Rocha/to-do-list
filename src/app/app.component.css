@@ -1,39 +1,13 @@
 header {
   display: flex;
   background-color: black;
-  margin-top: 0.5%;
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 50px;
   justify-content: center;
 }
-/* UTILITIES */
-.wordBreak {
-  word-break: break-all;
+.colunas{
+  flex-direction: column;
 }
 
-.div-tarefas {
-  display: grid;
-  grid-template-columns: 80% 20%;
-  width: 80%;
-  height: 10%;
-  margin-bottom: 3%;
-  margin-top: 3%;
-}
-.tarefa-registrada {
-  color: black;
-  justify-content: center;
-  border: 2px solid white;
-}
-#tittle-tarefa {
-  display: flex;
-  width: 100%;
-  height: 40%;
-  border-bottom: 2px solid white;
-}
-.description-div {
-  height: 100%;
-  display: flex;
-  border: 2px solid white;
-}
-/* / */
-/* TASKS-LISTS */

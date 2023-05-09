@@ -1,5 +1,4 @@
-import { Component } from "@angular/core";
-import { EventEmitter, Output } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 interface Tarefa {
   codigo: number;
@@ -13,7 +12,14 @@ interface Tarefa {
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.css"],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
+  ngOnInit(): void {
+    const lista: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
+    console.log(lista);
+    if (lista != null) {
+      this.tarefas = lista;
+    }
+  }
   contadorCodigos: number = 0;
   tarefas: Tarefa[] = [];
 
@@ -23,9 +29,6 @@ export class RegisterComponent {
     descricao: "",
     categoria: "",
   };
-
-  @Output()
-  clickRegister = new EventEmitter();
 
   register(): void {
     if (this.tarefa.categoria == "") {
@@ -41,7 +44,7 @@ export class RegisterComponent {
       localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
       this.tarefa.titulo = "";
       this.tarefa.descricao = "";
-      this.clickRegister.emit(tarefa);
+      location.reload();
     }
   }
 }

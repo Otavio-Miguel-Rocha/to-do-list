@@ -9,16 +9,18 @@
 a {
   text-decoration: none;
 }
+a:hover{
+  border-bottom: 2px solid aliceblue;
+}
 .text-navegation-items {
   display: flex;
+  justify-content: center;
+  align-items: center;
   list-style-type: none;
   color: aliceblue;
   cursor: pointer;
   background-color: black;
 }
-.text-navegation-items:hover {
-  border-bottom: 2px solid aliceblue;
-}
 #tittle-style{
-  background-color: black;
+  margin-right: 10%;
 }

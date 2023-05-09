@@ -1,9 +1,13 @@
 <header>
-  <app-nav></app-nav>
+  <app-nav (openMenuCategory)="openMenuCategoryTest()"></app-nav>
 </header>
 <main>
+  <section *ngIf="openMenu" class="colunas">
+    <app-categorias></app-categorias>
+  </section>
+
   <section>
-    <app-register (clickRegister)="registerTask($event)"></app-register>
+    <app-register></app-register>
   </section>
 
   <section>
