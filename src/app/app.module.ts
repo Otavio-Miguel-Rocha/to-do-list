@@ -6,10 +6,16 @@ import { FormsModule } from "@angular/forms";
 import { NavComponent } from "src/nav/nav.component";
 import { RegisterComponent } from "src/register/register.component";
 import { TasksComponent } from "src/tasks/tasks.component";
-import { CategoriasComponent } from 'src/categorias/categorias.component';
+import { CategoriasComponent } from "src/categorias/categorias.component";
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, RegisterComponent, TasksComponent, CategoriasComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    RegisterComponent,
+    TasksComponent,
+    CategoriasComponent,
+  ],
   imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,75 +1,15 @@
 <div id="grid-tasks">
-  <div class="tittle-list-grid" style="border-left: 0px">
-    <h2>To Do</h2>
+  <div
+    *ngFor="let categoria of categorias"
+    class="tittle-list-grid"
+    style="border-left: 0px"
+  >
+    <h2>{{ categoria }}</h2>
     <div
       *ngFor="let tarefa of tarefas; index as indice"
       class="div-tasks-behind"
     >
       <div *ngIf="tarefa.categoria == 'To-Do'" class="div-tasks">
-        <div class="description-view-in-list">
-          <div id="tittle-tarefa">
-            <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>
-          </div>
-          <div class="description-div">
-            <p class="wordBreak">Descrição: {{ tarefa.descricao }}</p>
-          </div>
-        </div>
-        <div class="description-view-in-list">
-          <select
-            class="buttons-inputs-list"
-            (change)="mudarCategoria()"
-            [(ngModel)]="tarefa.categoria"
-          >
-            <option>To-Do</option>
-            <option>Doing</option>
-            <option>Done</option>
-          </select>
-          <button (click)="remover(tarefa)" class="buttons-inputs-list">
-            Remover
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="tittle-list-grid">
-    <h2>Doing</h2>
-    <div
-      *ngFor="let tarefa of tarefas; index as indice"
-      class="div-tasks-behind"
-    >
-      <div *ngIf="tarefa.categoria == 'Doing'" class="div-tasks">
-        <div class="description-view-in-list">
-          <div id="tittle-tarefa">
-            <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>
-          </div>
-          <div class="description-div">
-            <p class="wordBreak">Descrição: {{ tarefa.descricao }}</p>
-          </div>
-        </div>
-        <div class="description-view-in-list">
-          <select
-            class="buttons-inputs-list"
-            (change)="mudarCategoria()"
-            [(ngModel)]="tarefa.categoria"
-          >
-            <option>To-Do</option>
-            <option>Doing</option>
-            <option>Done</option>
-          </select>
-          <button (click)="remover(tarefa)" class="buttons-inputs-list">
-            Remover
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="tittle-list-grid" style="border-right: 0px">
-    <h2>Done</h2>
-    <div
-      *ngFor="let tarefa of tarefas; index as indice"
-      class="div-tasks-behind"
-    >
-      <div *ngIf="tarefa.categoria == 'Done'" class="div-tasks">
         <div class="description-view-in-list">
           <div id="tittle-tarefa">
             <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>

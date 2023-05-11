@@ -15,13 +15,17 @@ interface Tarefa {
 export class TasksComponent implements OnInit {
   tarefas: Tarefa[] = [];
   contadorCodigos: number = 0;
-
+  categorias: string[];
   ngOnInit(): void {
+    //lista Tarefas
     const lista: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
     console.log(lista);
     if (lista != null) {
       this.tarefas = lista;
     }
+
+    //lista Categorias
+    this.categorias = JSON.parse(localStorage.getItem("Categorias"));
   }
 
   tarefa: Tarefa = {
