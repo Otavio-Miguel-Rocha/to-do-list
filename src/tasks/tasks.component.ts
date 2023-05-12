@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 interface Tarefa {
   titulo: string;
@@ -11,35 +11,24 @@ interface Tarefa {
   templateUrl: "./tasks.component.html",
   styleUrls: ["./tasks.component.css"],
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent{
+
   @Input()
-  tarefaRegister:Tarefa;
+  tarefaRegistradas:Tarefa[];
 
-  tarefas: Tarefa[] = [];
-  categorias: string[];
-  ngOnInit(): void {
-    //lista Tarefas
-    const lista: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
-    if (lista != null) {
-      this.tarefas = lista;
-    }
+  @Input()
+  categoriasRegistradas:string[];
 
-    //lista Categorias
-    this.categorias = JSON.parse(localStorage.getItem("Categorias"));
+  getTarefas(categoria:string): any[]{
+    return this.tarefaRegistradas.filter( (tarefa) => {
+      return tarefa.categoria === categoria;
+    })
   }
-
-  tarefa: Tarefa = {
-    titulo: "",
-    descricao: "",
-    categoria: "",
-  };
-
   remover(objeto: Tarefa): void {
-    this.tarefas.splice(this.tarefas.indexOf(objeto), 1);
-    console.log(this.tarefas);
-    localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
+    this.tarefaRegistradas.splice(this.tarefaRegistradas.indexOf(objeto), 1);
+    localStorage.setItem("Tarefas", JSON.stringify(this.tarefaRegistradas));
   }
   mudarCategoria(): void {
-    localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
+    localStorage.setItem("Tarefas", JSON.stringify(this.tarefaRegistradas));
   }
 }

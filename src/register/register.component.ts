@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 interface Tarefa {
   titulo: string;
@@ -13,8 +13,6 @@ interface Tarefa {
 })
 export class RegisterComponent implements OnInit{
 
-  @Output()
-  registrarTarefa = new EventEmitter();
   tarefas: Tarefa[] = [];
   categorias: string[];
   ngOnInit(): void {
@@ -43,11 +41,8 @@ export class RegisterComponent implements OnInit{
         descricao: this.tarefa.descricao,
         categoria: this.tarefa.categoria,
       };
-      console.log(tarefa);
       this.tarefas.push(tarefa);
       localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
-      this.registrarTarefa.emit(this.tarefa);
-      location.reload();
       this.tarefa.titulo = "";
       this.tarefa.descricao = "";
     }

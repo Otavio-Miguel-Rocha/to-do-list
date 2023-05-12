@@ -1,15 +1,15 @@
 <section id="grid-tasks">
   <div class="scroll-bar">
     <div
-      *ngFor="let categoria of categorias"
+      *ngFor="let categoria of categoriasRegistradas"
       class="tittle-list-grid"
     >
       <h2>{{ categoria }}</h2>
       <div
-        *ngFor="let tarefa of tarefas;"
+        *ngFor="let tarefa of getTarefas(categoria);"
         class="div-tasks-behind"
       >
-        <div *ngIf="tarefa.categoria == categoria" class="div-tasks">
+        <div class="div-tasks">
           <div class="description-view-in-list">
             <div id="tittle-tarefa">
               <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>
@@ -24,7 +24,7 @@
               (change)="mudarCategoria()"
               [(ngModel)]="tarefa.categoria"
             >
-              <option *ngFor="let categoria of categorias">{{categoria}}</option>
+              <option *ngFor="let categoria of categoriasRegistradas">{{categoria}}</option>
             </select>
             <button (click)="remover(tarefa)" class="buttons-inputs-list">
               Remover
@@ -32,6 +32,7 @@
           </div>
         </div>
       </div>
+      <button (click)="openRegister">+</button>
     </div>
   </div>
 </section>

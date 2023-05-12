@@ -12,10 +12,6 @@ export class CategoriasComponent implements OnInit {
     lista = JSON.parse(localStorage.getItem('Categorias'));
     if( lista != null ){
       this.categorias = lista;
-    } else{
-      this.categorias.push("To-Do");
-      this.categorias.push("Doing");
-      this.categorias.push("Done");
     }
   }
   categorias:string[] = [];
