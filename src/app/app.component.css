@@ -3,9 +3,8 @@ header {
   background-color: black;
   position: sticky;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: 50px;
-  justify-content: center;
 }
 .colunas{
   flex-direction: column;

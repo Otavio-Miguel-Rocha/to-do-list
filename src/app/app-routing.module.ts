@@ -12,6 +12,12 @@ const routes:Route[] = [
         path: 'tarefas',
         component: TasksRegisterComponent
     },
+
+    {
+        path:'',
+        pathMatch: 'full',
+        redirectTo: 'tarefas'
+    },//default route
 ];
 
 @NgModule({

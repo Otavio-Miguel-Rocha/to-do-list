@@ -1,7 +1,8 @@
-#main-grid {
+#main-div {
   display: flex;
   width: 100%;
   height: 20%;
+  color: aliceblue;
 }
 
 /* UTILITIES */
@@ -23,7 +24,6 @@
   align-items: center;
   width: 40%;
   background-color: black;
-  max-height: 100%;
   height: 100%;
 }
 .text-div-main-register {
@@ -64,7 +64,7 @@
 #botao-cadastro {
   display: flex;
   width: 35%;
-  height: 100%;
+  height: 30%;
   justify-content: center;
   align-items: center;
   font-size: 25px;

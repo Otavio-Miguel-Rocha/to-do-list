@@ -1,4 +1,4 @@
-<div id="main-grid">
+<div id="main-div">
   <div class="grid-show-default">
     <div class="div-main-register">
       <h1 class="text-div-main-register">Título:</h1>
@@ -31,7 +31,6 @@
       >
         <option *ngFor="let categoria of categorias">{{categoria}}</option>
       </select>
-      <h2 class="text-div-main-register">Categoria: {{ tarefa.categoria }}</h2>
       <button
         (click)="register()"
         id="botao-cadastro"
