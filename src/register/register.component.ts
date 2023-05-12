@@ -1,7 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 
 interface Tarefa {
-  codigo: number;
   titulo: string;
   descricao: string;
   categoria: string;
@@ -13,18 +12,23 @@ interface Tarefa {
   styleUrls: ["./register.component.css"],
 })
 export class RegisterComponent implements OnInit{
+
+  @Output()
+  registrarTarefa = new EventEmitter();
+  tarefas: Tarefa[] = [];
+  categorias: string[];
   ngOnInit(): void {
+    //tarefas
     const lista: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
-    console.log(lista);
     if (lista != null) {
       this.tarefas = lista;
     }
+    //categorias
+    this.categorias = JSON.parse(localStorage.getItem("Categorias"));
+    console.log(this.categorias);
   }
-  contadorCodigos: number = 0;
-  tarefas: Tarefa[] = [];
 
   tarefa: Tarefa = {
-    codigo: 0,
     titulo: "",
     descricao: "",
     categoria: "",
@@ -35,16 +39,17 @@ export class RegisterComponent implements OnInit{
       alert("A categoria deve ser preenchida");
     } else {
       const tarefa: Tarefa = {
-        codigo: this.contadorCodigos++,
         titulo: this.tarefa.titulo,
         descricao: this.tarefa.descricao,
         categoria: this.tarefa.categoria,
       };
+      console.log(tarefa);
       this.tarefas.push(tarefa);
       localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
+      this.registrarTarefa.emit(this.tarefa);
+      location.reload();
       this.tarefa.titulo = "";
       this.tarefa.descricao = "";
-      location.reload();
     }
   }
 }

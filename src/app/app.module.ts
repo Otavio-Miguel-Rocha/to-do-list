@@ -7,16 +7,16 @@ import { NavComponent } from "src/nav/nav.component";
 import { RegisterComponent } from "src/register/register.component";
 import { TasksComponent } from "src/tasks/tasks.component";
 import { CategoriasComponent } from "src/categorias/categorias.component";
+import { AppRountingModule } from "./app-routing.module";
+import { TasksRegisterModule } from "src/tasks-register/tasks-register.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    RegisterComponent,
-    TasksComponent,
     CategoriasComponent,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, AppRountingModule, TasksRegisterModule],
   providers: [],
   bootstrap: [AppComponent],
 })

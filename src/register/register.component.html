@@ -29,9 +29,7 @@
         class="inputs-buttons-cadastro"
         id="select-categoria"
       >
-        <option>To-Do</option>
-        <option>Doing</option>
-        <option>Done</option>
+        <option *ngFor="let categoria of categorias">{{categoria}}</option>
       </select>
       <h2 class="text-div-main-register">Categoria: {{ tarefa.categoria }}</h2>
       <button
@@ -44,3 +42,5 @@
     </div>
   </div>
 </div>
+<app-tasks
+></app-tasks>

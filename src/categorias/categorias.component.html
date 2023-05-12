@@ -1,17 +1,19 @@
-<div id="background-dark"></div>
+
 <div id="squareRegisterCategory">
-  <div class="teste">
+  <div class="div-center">
     <h2>Cadastre uma Nova Categoria</h2>
     <input [(ngModel)]="categoria" placeholder="Insira a nova Categoria" />
     <button (click)="cadastrarTarefa(categoria)">Cadastrar</button>
     <div class="category-list">
       <ul>
-        <div *ngFor="let categoria of categorias">
+        <div *ngFor="let categoria of categorias; index as indice">
           <li>
-            <h2>{{ categoria }}</h2>
+            <div class="row-category">
+              <h2>{{ categoria }}</h2>  
+              <button class="button-remove" (click)="removerDaLista(indice)">Remover</button>
+            </div>
           </li>
         </div>
       </ul>
     </div>
   </div>
-</div>

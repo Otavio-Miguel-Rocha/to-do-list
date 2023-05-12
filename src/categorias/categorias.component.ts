@@ -22,6 +22,14 @@ export class CategoriasComponent implements OnInit {
   
   cadastrarTarefa(categoria:string):void{
     this.categorias.push(categoria);
+    this.setLocalStorage();
+  }
+  removerDaLista(indice:number):void{
+    this.categorias.splice(indice,1);
+    this.setLocalStorage();
+  }
+
+  setLocalStorage():void{
     localStorage.setItem('Categorias',JSON.stringify(this.categorias));
   }
 

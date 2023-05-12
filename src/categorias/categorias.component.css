@@ -1,35 +1,31 @@
-#background-dark {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.4;
-  width: 60%;
-  height: 100%;
-  position: fixed;
-}
+
 #squareRegisterCategory {
   background-color: white;
   display: flex;
-  width: 40%;
+  width: 100%;
   height: 100%;
-  position: fixed;
-  right: 0%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.teste {
+.div-center {
   display: flex;
-  width: 100%;
-  height: 70%;
+  max-width: 50%;
   align-items: center;
   flex-direction: column;
 }
-
 .category-list {
   overflow: auto;
-  max-height: 70%;
-  width: 100%;
-  margin-left: 10%;
+  max-width: 100%;
+}
+.row-category{
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  word-break: break-all;
+  justify-content: baseline;
+}
+.button-remove{
+  float: inline-end;
+  right: 0%;
 }
