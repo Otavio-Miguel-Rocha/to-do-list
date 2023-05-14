@@ -1,19 +1,42 @@
 
 <div id="squareRegisterCategory">
-  <div class="div-center">
-    <h2>Cadastre uma Nova Categoria</h2>
-    <input [(ngModel)]="categoria" placeholder="Insira a nova Categoria" />
-    <button (click)="cadastrarTarefa(categoria)">Cadastrar</button>
+  <div class="information-register-category">
+    <h2 class="tittle-section">Cadastre uma Nova Categoria</h2>
+    <p class="content-register-category">Aqui você pode criar novas categorias para o seu kanban, utilize da criatividade para nomear ela.</p>
+  </div>
+  <div class="grid-category">
     <div class="category-list">
-      <ul>
-        <div *ngFor="let categoria of categorias; index as indice">
-          <li>
-            <div class="row-category">
-              <h2>{{ categoria }}</h2>  
-              <button class="button-remove" (click)="removerDaLista(indice)">Remover</button>
-            </div>
-          </li>
-        </div>
+      <h3 id="tittle-list-category">Categorias Cadastradas</h3>
+      <ul style="margin-top: 2%;">
+          <div *ngFor="let categoria of categorias; index as indice" class="category">
+            <li style="list-style-type: none;" [style.background-color]="categoria.cor">
+                <div class="grid-category-one">
+                  <div class="category-div-behind-name">
+                    <div class="category-div-name">
+                      <p class="category-name">{{ categoria.nome }}</p>
+                    </div>  
+                  </div>
+                  <div class="icons-list">
+                    <input type="color" [(ngModel)]="categoria.cor" class="button-input-list">  
+                    <button class="button-input-list" (click)="removerDaLista(indice)">Remover</button>
+                  </div>
+                </div>
+            </li>
+          </div>
       </ul>
+    </div>
+    <div class="register-category">
+      <div class="input-category-register">
+        <h2>Nome: </h2>
+        <input id="input-category" [(ngModel)]="categoria.nome" placeholder="Insira a nova Categoria..." />
+      </div>
+      <div class="colorAndButton">
+        <div>
+          <input type="color" [(ngModel)]="categoria.cor">
+        </div>
+        <div> 
+          <button (click)="cadastrarTarefa(categoria)">Cadastrar</button>
+        </div>
+      </div>
     </div>
   </div>

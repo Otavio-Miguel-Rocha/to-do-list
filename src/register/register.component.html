@@ -32,7 +32,7 @@
           class="inputs-buttons-cadastro"
           id="select-categoria"
         >
-          <option *ngFor="let categoria of categorias">{{categoria}}</option>
+          <option *ngFor="let categoria of categorias">{{categoria.nome}}</option>
         </select>
         <button
           (click)="register()"

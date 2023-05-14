@@ -3,8 +3,9 @@
     <div
       *ngFor="let categoria of categoriasRegistradas"
       class="tittle-list-grid"
+      [style.background-color]="categoria.cor"
     >
-      <h2>{{ categoria }}</h2>
+      <h2>{{ categoria.nome }}</h2>
       <div
         *ngFor="let tarefa of getTarefas(categoria);"
         class="div-tasks-behind"

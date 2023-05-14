@@ -1,5 +1,9 @@
 import { Component, OnInit} from '@angular/core';
 
+interface Categoria{
+  nome: string;
+  cor: string;
+}
 
 @Component({
   selector: 'app-categorias',
@@ -8,15 +12,25 @@ import { Component, OnInit} from '@angular/core';
 })
 export class CategoriasComponent implements OnInit {
   ngOnInit() {
-    let lista:string[];
+    let lista:Categoria[];
     lista = JSON.parse(localStorage.getItem('Categorias'));
     if( lista != null ){
       this.categorias = lista;
     }
   }
-  categorias:string[] = [];
+  categorias:Categoria[] = [];
+
+  categoria: Categoria = {
+    nome: "",
+    cor: ""
+  }
   
-  cadastrarTarefa(categoria:string):void{
+  cadastrarTarefa():void{
+    const categoria: Categoria = {
+      nome: this.categoria.nome,
+      cor: this.categoria.cor
+    }
+    console.log(categoria);
     this.categorias.push(categoria);
     this.setLocalStorage();
   }
