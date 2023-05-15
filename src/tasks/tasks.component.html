@@ -7,7 +7,7 @@
     >
       <h2>{{ categoria.nome }}</h2>
       <div
-        *ngFor="let tarefa of getTarefas(categoria);"
+        *ngFor="let tarefa of getTarefas(categoria.nome)"
         class="div-tasks-behind"
       >
         <div class="div-tasks">
@@ -23,9 +23,11 @@
             <select
               class="buttons-inputs-list"
               (change)="mudarCategoria()"
-              [(ngModel)]="tarefa.categoria"
+              [(ngModel)]="tarefa.categoria.nome"
             >
-              <option *ngFor="let categoria of categoriasRegistradas">{{categoria}}</option>
+              <option *ngFor="let categoria of categoriasRegistradas">
+                {{ categoria.nome }}
+              </option>
             </select>
             <button (click)="remover(tarefa)" class="buttons-inputs-list">
               Remover
@@ -33,7 +35,7 @@
           </div>
         </div>
       </div>
-      <button (click)="openRegister">+</button>
+      <button (click)="(openRegister)">+</button>
     </div>
   </div>
 </section>

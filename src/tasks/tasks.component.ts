@@ -3,7 +3,11 @@ import { Component, Input } from "@angular/core";
 interface Tarefa {
   titulo: string;
   descricao: string;
-  categoria: string;
+  categoria: Categoria;
+}
+interface Categoria {
+  nome: string;
+  cor: string;
 }
 
 @Component({
@@ -11,18 +15,17 @@ interface Tarefa {
   templateUrl: "./tasks.component.html",
   styleUrls: ["./tasks.component.css"],
 })
-export class TasksComponent{
+export class TasksComponent {
+  @Input()
+  tarefaRegistradas: Tarefa[];
 
   @Input()
-  tarefaRegistradas:Tarefa[];
+  categoriasRegistradas: Categoria[];
 
-  @Input()
-  categoriasRegistradas:string[];
-
-  getTarefas(categoria:string): any[]{
-    return this.tarefaRegistradas.filter( (tarefa) => {
-      return tarefa.categoria === categoria;
-    })
+  getTarefas(categoria: string): any[] {
+    return this.tarefaRegistradas.filter((tarefa) => {
+      return tarefa.categoria.nome == categoria;
+    });
   }
   remover(objeto: Tarefa): void {
     this.tarefaRegistradas.splice(this.tarefaRegistradas.indexOf(objeto), 1);

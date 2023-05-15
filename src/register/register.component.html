@@ -28,11 +28,13 @@
           Categoria:
         </h1>
         <select
-          [(ngModel)]="tarefa.categoria"
+          [(ngModel)]="tarefa.categoria.nome"
           class="inputs-buttons-cadastro"
           id="select-categoria"
         >
-          <option *ngFor="let categoria of categorias">{{categoria.nome}}</option>
+          <option *ngFor="let categoria of categorias">
+            {{ categoria.nome }}
+          </option>
         </select>
         <button
           (click)="register()"
@@ -46,6 +48,6 @@
   </div>
 </div>
 <app-tasks
-[categoriasRegistradas]="categorias"
-[tarefaRegistradas]="tarefas"
+  [categoriasRegistradas]="categorias"
+  [tarefaRegistradas]="tarefas"
 ></app-tasks>

@@ -1,4 +1,4 @@
-  /* main square */
+/* main square */
 #squareRegisterCategory {
   background-color: white;
   display: flex;
@@ -9,18 +9,18 @@
 }
 /*  */
 /* information square */
-.information-register-category{
+.information-register-category {
   display: flex;
   height: 30%;
   width: 70%;
   justify-content: center;
   flex-direction: column;
 }
-.tittle-section{
+.tittle-section {
   border-bottom: 2px solid gray;
   width: 45%;
 }
-.content-register-category{
+.content-register-category {
   display: flex;
   height: 10%;
   margin-top: 1%;
@@ -30,7 +30,7 @@
 .grid-category {
   display: grid;
   width: 70%;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 /*  */
 /* left-side-grid-list */
@@ -40,72 +40,91 @@
   height: 150px;
   flex-direction: column;
 }
-#tittle-list-category{
+#tittle-list-category {
   border-bottom: 2px solid gray;
   width: 60%;
 }
-.square-all-categories{
+.square-all-categories {
   display: grid;
   width: 100%;
   grid-template-columns: 75% 25%;
 }
-.grid-category-one{
+.grid-category-one {
   display: grid;
   grid-template-columns: 70% 30%;
   width: 100%;
   height: 70px;
 }
-.category-div-behind-name{
+.category-div-behind-name {
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
 }
-.category-div-name{
+.category-div-name {
   display: flex;
   width: 80%;
   height: 80%;
   background-color: white;
+  word-break: break-all;
 }
-.category-name{
+.category-name {
   word-break: break-all;
   font-size: 20px;
 }
-.icons-list{
+.icons-list {
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
 }
-.button-input-list{
+.button-input-list {
   width: 80%;
-  height: 50% ;
+  height: 50%;
+  cursor: pointer;
 }
 
-
 /* right-side-grid-register */
-.register-category{
+.register-category {
   display: flex;
   width: 100%;
   height: 30vh;
   align-items: center;
-  background-color: rgb(201, 184, 184);
+  background-color: rgb(41, 35, 43);
   flex-direction: column;
+  color: white;
 }
-.input-category-register{
+.input-category-register {
   display: flex;
   width: 80%;
   height: 50%;
   flex-direction: column;
 }
-#input-category{
+#input-category {
   display: flex;
   width: 100%;
   height: 40%;
   font-size: 25px;
 }
-.colorAndButton{
+.colorAndButton {
   display: grid;
   width: 80%;
+  height: 100%;
   grid-template-columns: 60% 40%;
+}
+.inputs-registers {
+  display: flex;
+  width: 80%;
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+}
+.input-register-configurations-categories {
+  display: flex;
+  width: 100%;
+  height: 70%;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  cursor: pointer;
 }
