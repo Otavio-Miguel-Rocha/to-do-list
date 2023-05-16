@@ -1,46 +1,47 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-interface Categoria{
+interface Categoria {
   nome: string;
   cor: string;
 }
 
 @Component({
-  selector: 'app-categorias',
-  templateUrl: './categorias.component.html',
-  styleUrls: ['./categorias.component.css']
+  selector: "app-categorias",
+  templateUrl: "./categorias.component.html",
+  styleUrls: ["./categorias.component.css"],
 })
 export class CategoriasComponent implements OnInit {
   ngOnInit() {
-    let lista:Categoria[];
-    lista = JSON.parse(localStorage.getItem('Categorias'));
-    if( lista != null ){
+    let lista: Categoria[];
+    lista = JSON.parse(localStorage.getItem("Categorias"));
+    if (lista != null) {
       this.categorias = lista;
     }
   }
-  categorias:Categoria[] = [];
+  categorias: Categoria[] = [];
 
   categoria: Categoria = {
     nome: "",
-    cor: ""
-  }
-  
-  cadastrarTarefa():void{
+    cor: "",
+  };
+
+  cadastrarTarefa(): void {
+    if (this.categoria.cor == "") {
+      this.categoria.cor = "#000000";
+    }
     const categoria: Categoria = {
       nome: this.categoria.nome,
-      cor: this.categoria.cor
-    }
-    console.log(categoria);
+      cor: this.categoria.cor,
+    };
     this.categorias.push(categoria);
     this.setLocalStorage();
   }
-  removerDaLista(indice:number):void{
-    this.categorias.splice(indice,1);
+  removerDaLista(indice: number): void {
+    this.categorias.splice(indice, 1);
     this.setLocalStorage();
   }
 
-  setLocalStorage():void{
-    localStorage.setItem('Categorias',JSON.stringify(this.categorias));
+  setLocalStorage(): void {
+    localStorage.setItem("Categorias", JSON.stringify(this.categorias));
   }
-
 }

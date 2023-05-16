@@ -1,31 +1,56 @@
-#grid-tasks {
+.main-content {
+  background-color: white;
   display: flex;
   width: 100vw;
-  justify-content: center;
-  height: 100% ;
-  margin-top: 3%;
+  height: 90vh;
+  align-items: center;
+  flex-direction: column;
 }
-.scroll-bar{
+.information-tasks {
   display: flex;
-  width: 80vw;
-  overflow: auto;
-  overflow-y: hidden;
-  transform: rotateX(180deg);
+  height: 30%;
+  width: 70%;
+  justify-content: center;
+  flex-direction: column;
 }
-::-webkit-scrollbar-track{
+.tittle-section {
+  border-bottom: 2px solid gray;
+  width: 45%;
+}
+.content-tasks-page {
+  display: flex;
+  height: 10%;
+  margin-top: 1%;
+}
+.scroll-bar {
+  display: flex;
+  width: 1000px;
+  max-width: 1000px;
+  height: 300px;
+  max-height: 300px;
+  transform: rotateX(180deg);
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-direction: row;
+}
+::-webkit-scrollbar-track {
   background-color: black;
 }
 .tittle-list-grid {
   flex-direction: column;
   display: flex;
-  height: 100%;
-  width: 20%;
-  word-break: break-all;
+  width: 350px;
+  max-width: 350px;
   justify-content: baseline;
   align-items: center;
   border: 2px solid black;
   transform: rotateX(180deg);
-
+  overflow-y: auto;
+}
+.category-tittle {
+  display: flex;
+  margin-top: 5%;
+  background-color: white;
 }
 .div-tasks-behind {
   display: flex;
@@ -62,5 +87,16 @@
   color: rgb(160, 161, 214);
   background-color: white;
   border: 2px solid rgb(160, 161, 214);
+  cursor: pointer;
+}
+/* button-add */
+.button-add {
+  display: flex;
+  width: 95%;
+  height: 9%;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  margin-top: 4%;
   cursor: pointer;
 }

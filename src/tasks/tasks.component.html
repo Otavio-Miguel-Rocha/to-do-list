@@ -1,11 +1,20 @@
-<section id="grid-tasks">
+<section class="main-content">
+  <div class="information-tasks">
+    <h2 class="tittle-section">Minhas Tarefas</h2>
+    <p class="content-tasks-page">
+      Aqui você pode criar e organizar suas tarefas, descrevendo atividades e
+      afazeres do seu dia-a-dia.
+    </p>
+  </div>
   <div class="scroll-bar">
     <div
       *ngFor="let categoria of categoriasRegistradas"
       class="tittle-list-grid"
       [style.background-color]="categoria.cor"
     >
-      <h2>{{ categoria.nome }}</h2>
+      <div class="category-tittle">
+        <h2>{{ categoria.nome }}</h2>
+      </div>
       <div
         *ngFor="let tarefa of getTarefas(categoria.nome)"
         class="div-tasks-behind"
@@ -35,7 +44,9 @@
           </div>
         </div>
       </div>
-      <button (click)="(openRegister)">+</button>
+      <button (click)="openRegister()" class="button-add">+</button>
     </div>
+    <div></div>
   </div>
 </section>
+<app-register *ngIf="registroTarefa"></app-register>

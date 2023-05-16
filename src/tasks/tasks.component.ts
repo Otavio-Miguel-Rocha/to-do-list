@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 interface Tarefa {
   titulo: string;
@@ -15,13 +15,24 @@ interface Categoria {
   templateUrl: "./tasks.component.html",
   styleUrls: ["./tasks.component.css"],
 })
-export class TasksComponent {
-  @Input()
+export class TasksComponent implements OnInit {
+  ngOnInit(): void {
+    let listaTarefas: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
+    if (listaTarefas != null) {
+      this.tarefaRegistradas = listaTarefas;
+    }
+    let listaCategorias: Categoria[] = JSON.parse(
+      localStorage.getItem("Categorias")
+    );
+    if (listaCategorias != null) {
+      this.categoriasRegistradas = listaCategorias;
+    }
+  }
   tarefaRegistradas: Tarefa[];
 
-  @Input()
   categoriasRegistradas: Categoria[];
 
+  registroTarefa: boolean = false;
   getTarefas(categoria: string): any[] {
     return this.tarefaRegistradas.filter((tarefa) => {
       return tarefa.categoria.nome == categoria;
@@ -33,5 +44,12 @@ export class TasksComponent {
   }
   mudarCategoria(): void {
     localStorage.setItem("Tarefas", JSON.stringify(this.tarefaRegistradas));
+  }
+  openRegister(): void {
+    if (this.registroTarefa) {
+      this.registroTarefa = false;
+    } else {
+      this.registroTarefa = true;
+    }
   }
 }

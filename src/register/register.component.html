@@ -1,53 +1,44 @@
-<div id="main-div">
-  <div class="grid-show-default">
-    <div class="div-main-register">
-      <div>
-        <h1 class="text-div-main-register">Título:</h1>
-        <input
-          placeholder="Insira o título aqui..."
-          maxlength="30"
-          [(ngModel)]="tarefa.titulo"
-          id="tituloTarefa"
-          class="inputs-buttons-cadastro"
-        />
-        <h1 class="text-div-main-register">Descrição:</h1>
-        <textarea
-          rows="10"
-          cols="50"
-          placeholder="Insira a descrição aqui..."
-          [(ngModel)]="tarefa.descricao"
-          class="inputs-buttons-cadastro"
-          id="descricao-tarefa"
-        ></textarea>
-      </div>
-      <div>
-        <h1
-          class="text-div-main-register"
-          style="align-self: center; margin-left: 0%"
-        >
-          Categoria:
-        </h1>
-        <select
-          [(ngModel)]="tarefa.categoria.nome"
-          class="inputs-buttons-cadastro"
-          id="select-categoria"
-        >
-          <option *ngFor="let categoria of categorias">
-            {{ categoria.nome }}
-          </option>
-        </select>
-        <button
-          (click)="register()"
-          id="botao-cadastro"
-          class="inputs-buttons-cadastro"
-        >
-          Cadastrar
-        </button>
-      </div>
-    </div>
+<div id="grid-div">
+  <div id="opacity-div"></div>
+  <div class="div-register">
+    <h1 class="text-div-main-register">Título:</h1>
+    <input
+      placeholder="Insira o título aqui..."
+      maxlength="30"
+      [(ngModel)]="tarefa.titulo"
+      id="tituloTarefa"
+      class="inputs-buttons-cadastro"
+    />
+    <h1 class="text-div-main-register">Descrição:</h1>
+    <textarea
+      rows="10"
+      cols="50"
+      placeholder="Insira a descrição aqui..."
+      [(ngModel)]="tarefa.descricao"
+      class="inputs-buttons-cadastro"
+      id="descricao-tarefa"
+    ></textarea>
+    <h1
+      class="text-div-main-register"
+      style="align-self: center; margin-left: 0%"
+    >
+      Categoria:
+    </h1>
+    <select
+      [(ngModel)]="tarefa.categoria.nome"
+      class="inputs-buttons-cadastro"
+      id="select-categoria"
+    >
+      <option *ngFor="let categoria of categorias">
+        {{ categoria.nome }}
+      </option>
+    </select>
+    <button
+      (click)="register()"
+      id="botao-cadastro"
+      class="inputs-buttons-cadastro"
+    >
+      Cadastrar
+    </button>
   </div>
 </div>
-<app-tasks
-  [categoriasRegistradas]="categorias"
-  [tarefaRegistradas]="tarefas"
-></app-tasks>

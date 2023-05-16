@@ -30,6 +30,7 @@
 .grid-category {
   display: grid;
   width: 70%;
+  height: 30%;
   grid-template-columns: repeat(2, 1fr);
 }
 /*  */
@@ -37,8 +38,10 @@
 .category-list {
   display: flex;
   width: 100%;
-  height: 150px;
+  height: 400px;
+  max-height: 400px;
   flex-direction: column;
+  overflow-y: auto;
 }
 #tittle-list-category {
   border-bottom: 2px solid gray;

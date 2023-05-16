@@ -1,12 +1,11 @@
 header {
   display: flex;
   background-color: black;
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100vw;
   height: 50px;
 }
-.colunas{
+.colunas {
   flex-direction: column;
 }
-

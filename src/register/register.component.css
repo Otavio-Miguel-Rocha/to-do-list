@@ -1,8 +1,23 @@
-#main-div {
-  display: flex;
+#grid-div {
+  display: grid;
   width: 100%;
-  height: 20%;
+  height: 50%;
+  position: absolute;
+  grid-template-columns: 60% 40%;
+}
+#opacity-div {
+  display: flex;
+  width: 60%;
+  height: inherit;
+  position: fixed;
+  background-color: black;
   color: aliceblue;
+  opacity: 0.6;
+}
+.div-register {
+  display: flex;
+  width: 40%;
+  flex-direction: column;
 }
 
 /* UTILITIES */
@@ -16,6 +31,7 @@
   width: 100%;
   justify-content: center;
   margin-top: 2%;
+  right: 0%;
 }
 .div-main-register {
   display: grid;

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { EventEmitter, NgModule, Output } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RegisterComponent } from "./register.component";
 

@@ -6,15 +6,18 @@ import { FormsModule } from "@angular/forms";
 import { NavComponent } from "src/nav/nav.component";
 import { CategoriasComponent } from "src/categorias/categorias.component";
 import { AppRountingModule } from "./app-routing.module";
-import { TasksRegisterModule } from "src/tasks-register/tasks-register.module";
+import { TasksComponent } from "src/tasks/tasks.component";
+import { RegisterComponent } from "src/register/register.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     CategoriasComponent,
+    TasksComponent,
+    RegisterComponent,
   ],
-  imports: [BrowserModule, FormsModule, AppRountingModule, TasksRegisterModule],
+  imports: [BrowserModule, FormsModule, AppRountingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
