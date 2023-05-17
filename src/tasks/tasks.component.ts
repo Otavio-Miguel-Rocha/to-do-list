@@ -20,6 +20,8 @@ export class TasksComponent implements OnInit {
     let listaTarefas: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
     if (listaTarefas != null) {
       this.tarefaRegistradas = listaTarefas;
+    } else{
+      this.tarefaRegistradas = [];
     }
     let listaCategorias: Categoria[] = JSON.parse(
       localStorage.getItem("Categorias")
@@ -29,13 +31,11 @@ export class TasksComponent implements OnInit {
     }
   }
   tarefaRegistradas: Tarefa[];
-
   categoriasRegistradas: Categoria[];
 
-  registroTarefa: boolean = false;
-  getTarefas(categoria: string): any[] {
+  getTarefas(categoria: Categoria): any[] {
     return this.tarefaRegistradas.filter((tarefa) => {
-      return tarefa.categoria.nome == categoria;
+      return tarefa.categoria === categoria;
     });
   }
   remover(objeto: Tarefa): void {
@@ -45,11 +45,7 @@ export class TasksComponent implements OnInit {
   mudarCategoria(): void {
     localStorage.setItem("Tarefas", JSON.stringify(this.tarefaRegistradas));
   }
-  openRegister(): void {
-    if (this.registroTarefa) {
-      this.registroTarefa = false;
-    } else {
-      this.registroTarefa = true;
-    }
+  sendList(categoria:string): void {
+    localStorage.setItem("CategoriaCadastro", JSON.stringify(categoria));
   }
 }

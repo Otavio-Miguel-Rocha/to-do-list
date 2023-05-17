@@ -16,7 +16,7 @@
         <h2>{{ categoria.nome }}</h2>
       </div>
       <div
-        *ngFor="let tarefa of getTarefas(categoria.nome)"
+        *ngFor="let tarefa of getTarefas(categoria)"
         class="div-tasks-behind"
       >
         <div class="div-tasks">
@@ -44,9 +44,7 @@
           </div>
         </div>
       </div>
-      <button (click)="openRegister()" class="button-add">+</button>
+      <button routerLink="/registrar-tarefa" (click)="sendList(categoria)" class="button-add">+</button>
     </div>
-    <div></div>
   </div>
 </section>
-<app-register *ngIf="registroTarefa"></app-register>

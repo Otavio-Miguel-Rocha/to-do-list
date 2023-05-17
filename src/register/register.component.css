@@ -1,23 +1,44 @@
-#grid-div {
+#grid-register {
   display: grid;
-  width: 100%;
-  height: 50%;
+  width: 100vw;
+  height: 92.30%;
+  margin-top: 50px;
   position: absolute;
   grid-template-columns: 60% 40%;
 }
-#opacity-div {
+#list-tasks-div{
   display: flex;
-  width: 60%;
-  height: inherit;
-  position: fixed;
-  background-color: black;
-  color: aliceblue;
-  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.square-list-div{
+  display: flex;
+  width: 45%;
+  background-color: white;
+  height: 350px;
+  max-height: 350px;
+  justify-content: baseline;
+  align-items: center;
+  flex-direction: column;
+}
+.icon{
+  width: 30px;
+  height: auto;
+  cursor: pointer;
 }
 .div-register {
   display: flex;
-  width: 40%;
+  width: 100%;
+  height: 100%;
+  right: 0%;
   flex-direction: column;
+}
+.div-right{
+  display: flex;
+  width: 40%;
+  background-color: aliceblue;
 }
 
 /* UTILITIES */
