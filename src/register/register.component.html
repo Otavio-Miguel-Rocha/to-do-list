@@ -1,38 +1,45 @@
 <div id="grid-register">
-  <div id="list-tasks-div"
-  [style.background-color]="categoria.cor">
+  <div id="list-tasks-div" [style.background-color]="categoria.cor">
     <div class="square-list-div">
-        <h2> {{categoria.nome}}</h2>
-        <div *ngFor="let tarefa of getTarefas(categoria)">
-            <h2>{{ tarefa.titulo }}</h2>
-        </div>
+      <h2>{{ categoria.nome }}</h2>
+      <div *ngFor="let tarefa of getTarefas(categoria)">
+        <h2>{{ tarefa.titulo }}</h2>
+      </div>
     </div>
   </div>
   <div>
-      <a routerLink="/tarefas" (click)="updateCurrentCategory()"><img src="../assets/imgs/back-icon.png" class="icon"></a>
-      <h1 class="text-div-main-register">Título:</h1>
-      <input
-        placeholder="Insira o título aqui..."
-        maxlength="30"
-        [(ngModel)]="tarefa.titulo"
-        id="tituloTarefa"
-        class="inputs-buttons-cadastro"
-      />
-      <h1 class="text-div-main-register">Descrição:</h1>
-      <textarea
-        rows="10"
-        cols="50"
-        placeholder="Insira a descrição aqui..."
-        [(ngModel)]="tarefa.descricao"
-        class="inputs-buttons-cadastro"
-        id="descricao-tarefa"
-      ></textarea>
-      <button
-        (click)="register()"
-        id="botao-cadastro"
-        class="inputs-buttons-cadastro"
-      >
-        Cadastrar
-      </button>
+    <a routerLink="/tarefas" (click)="updateCurrentCategory()"
+      ><img src="../assets/imgs/back-icon.png" class="icon"
+    /></a>
+    <div class="div-register-square">
+      <div class="div-register-content">
+        <h1>Título:</h1>
+        <input
+          placeholder="Insira o título aqui..."
+          maxlength="30"
+          [(ngModel)]="tarefa.titulo"
+          id="tituloTarefa"
+          class="inputs-buttons-cadastro"
+        />
+        <h1 class="text-div-main-register">Descrição:</h1>
+        <textarea
+          rows="10"
+          cols="50"
+          placeholder="Insira a descrição aqui..."
+          [(ngModel)]="tarefa.descricao"
+          class="inputs-buttons-cadastro"
+          id="descricao-tarefa"
+        ></textarea>
+        <div class="button-div">
+          <button
+            (click)="register()"
+            id="botao-cadastro"
+            class="inputs-buttons-cadastro"
+          >
+            Cadastrar
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

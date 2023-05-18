@@ -1,19 +1,26 @@
+/* UTILITIES */
+.wordBreak {
+  word-break: break-all;
+}
+/* MAIN GRID */
 #grid-register {
   display: grid;
   width: 100vw;
-  height: 92.30%;
+  height: 94.3%;
   margin-top: 50px;
-  position: absolute;
+  position: fixed;
   grid-template-columns: 60% 40%;
 }
-#list-tasks-div{
+/*  */
+/* LEFT GRID */
+#list-tasks-div {
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
 }
-.square-list-div{
+.square-list-div {
   display: flex;
   width: 45%;
   background-color: white;
@@ -23,29 +30,28 @@
   align-items: center;
   flex-direction: column;
 }
-.icon{
+/*  */
+/* RIGTH GRID */
+.icon {
   width: 30px;
   height: auto;
   cursor: pointer;
 }
-.div-register {
+.div-register-square {
   display: flex;
   width: 100%;
   height: 100%;
-  right: 0%;
+  justify-content: baseline;
+  align-items: center;
   flex-direction: column;
 }
-.div-right{
+.div-register-content {
   display: flex;
-  width: 40%;
-  background-color: aliceblue;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+  justify-content: baseline;
 }
-
-/* UTILITIES */
-.wordBreak {
-  word-break: break-all;
-}
-
 .grid-show-default {
   flex-direction: row;
   display: flex;
@@ -65,47 +71,43 @@
   height: 100%;
   color: black;
 }
-.text-div-main-register {
-  align-self: baseline;
-  margin-left: 10%;
-  background-color: inherit;
-}
 
 .inputs-buttons-cadastro {
-  background-color: white;
-  border: 2px solid rgb(57, 117, 170);
-  color: rgb(57, 117, 170);
-  justify-content: center;
-  align-items: center;
+  display: flex;
+  width: 100%;
+  border: 0;
+  font-size: 30px;
 }
 #tituloTarefa {
   display: flex;
-  width: 80%;
-  height: 10%;
-  font-size: 20px;
+  height: 12%;
 }
 #descricao-tarefa {
   display: flex;
-  width: 80%;
+  margin-top: 2%;
   height: 30%;
-  font-size: 15px;
+  font-size: 20px;
   resize: none;
 }
-#select-categoria {
+.button-div {
   display: flex;
-  width: 150px;
-  height: 30px;
-  font-size: 20px;
-  text-align: center;
-  cursor: pointer;
+  width: 100%;
+  height: 30%;
+  justify-content: center;
 }
-
 #botao-cadastro {
   display: flex;
-  width: 35%;
   height: 30%;
   justify-content: center;
   align-items: center;
   font-size: 25px;
   cursor: pointer;
+}
+#botao-cadastro:hover {
+  top: -5%;
+  left: -5%;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
 }

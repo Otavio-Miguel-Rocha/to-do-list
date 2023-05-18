@@ -4,7 +4,7 @@ header {
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 50px;
+  height: 6%;
 }
 .colunas {
   flex-direction: column;

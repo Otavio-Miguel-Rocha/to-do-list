@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { forEach } from "@angular/router/src/utils/collection";
 
 interface Tarefa {
   titulo: string;
@@ -26,14 +27,13 @@ export class RegisterComponent implements OnInit {
     const lista: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
     if (lista != null) {
       this.tarefas = lista;
-    } else{
+    } else {
       this.tarefas = [];
     }
     //categorias
     this.categoria = JSON.parse(localStorage.getItem("CategoriaCadastro"));
     console.log(this.categoria);
     console.log(this.tarefas);
-
   }
 
   tarefa: Tarefa = {
@@ -54,17 +54,27 @@ export class RegisterComponent implements OnInit {
         cor: this.categoria.cor,
       },
     };
-    this.tarefas.push(tarefa);
-    localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
-    this.tarefa.titulo = "";
-    this.tarefa.descricao = "";
+    let nomeIgual: boolean = false;
+    this.tarefas.forEach((tarefaForEach) => {
+      if (tarefa.titulo == tarefaForEach.titulo) {
+        nomeIgual = true;
+      }
+    });
+    if (nomeIgual) {
+      alert("O título já existe");
+    } else {
+      this.tarefas.push(tarefa);
+      localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
+      this.tarefa.titulo = "";
+      this.tarefa.descricao = "";
+    }
   }
   getTarefas(categoria: Categoria): any[] {
     return this.tarefas.filter((tarefa) => {
       return tarefa.categoria.nome === categoria.nome;
     });
   }
-  updateCurrentCategory(): void{
+  updateCurrentCategory(): void {
     localStorage.removeItem("CategoriaCadastro");
   }
 }
