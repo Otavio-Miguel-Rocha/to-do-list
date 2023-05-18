@@ -1,11 +1,9 @@
 header {
-  display: flex;
+  display: block;
   background-color: black;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100vw;
-  height: 6%;
-}
-.colunas {
-  flex-direction: column;
+  height: 65px;
+  z-index: 100;
 }

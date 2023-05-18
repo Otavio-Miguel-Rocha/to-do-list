@@ -1,50 +1,30 @@
-<section class="main-content">
-  <div class="information-tasks">
-    <h2 class="tittle-section">Minhas Tarefas</h2>
-    <p class="content-tasks-page">
-      Aqui você pode criar e organizar suas tarefas, descrevendo atividades e
-      afazeres do seu dia-a-dia.
-    </p>
-  </div>
-  <div class="scroll-bar">
-    <div
-      *ngFor="let categoria of categoriasRegistradas"
-      class="tittle-list-grid"
-      [style.background-color]="categoria.cor"
-    >
-      <div class="category-tittle">
-        <h2>{{ categoria.nome }}</h2>
-      </div>
-      <div
-        *ngFor="let tarefa of getTarefas(categoria)"
-        class="div-tasks-behind"
-      >
-        <div class="div-tasks">
-          <div class="description-view-in-list">
-            <div id="tittle-tarefa">
-              <h3 class="wordBreak">Tarefa: {{ tarefa.titulo }}</h3>
-            </div>
-            <div class="description-div">
-              <p class="wordBreak">Descrição: {{ tarefa.descricao }}</p>
-            </div>
-          </div>
-          <div class="description-view-in-list">
-            <select
-              class="buttons-inputs-list"
-              (change)="mudarCategoria()"
-              [(ngModel)]="tarefa.categoria.nome"
-            >
-              <option *ngFor="let categoria of categoriasRegistradas">
-                {{ categoria.nome }}
-              </option>
-            </select>
-            <button (click)="remover(tarefa)" class="buttons-inputs-list">
-              Remover
-            </button>
-          </div>
-        </div>
-      </div>
-      <button routerLink="/registrar-tarefa" (click)="sendList(categoria)" class="button-add">+</button>
-    </div>
-  </div>
-</section>
+ <div class="main-content">
+   <div class="information-tasks">
+     <h2 class="tittle-section">Minhas Tarefas</h2>
+     <p class="content-tasks-page">
+       Aqui você pode criar e organizar suas tarefas, descrevendo atividades e
+       afazeres do seu dia-a-dia.
+     </p>
+   </div>
+ </div>
+ <div class="main-content-tasks">
+   <div class="scroll-bar">
+     <div
+       *ngFor="let categoria of categoriasRegistradas"
+       class="tittle-list-grid"
+       [style.background-color]="categoria.cor"
+     >
+       <div class="category-tittle">
+         <h2>{{ categoria.nome }}</h2>
+       </div>
+       <div
+         *ngFor="let tarefa of getTarefas(categoria)"
+         class="div-tasks-behind"
+       >
+         <app-task [tarefas]="tarefaRegistradas" [tarefa]="tarefa" [categoria]="categoria" [categorias]="categoriasRegistradas"></app-task>
+       </div>
+       <button routerLink="/registrar-tarefa" (click)="sendList(categoria)" class="button-add">+</button>
+     </div>
+   </div>
+   </div>
+

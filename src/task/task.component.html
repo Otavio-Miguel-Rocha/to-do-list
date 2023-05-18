@@ -1,0 +1,32 @@
+<div class="div-tasks">
+    <div class="tittle-description-view-in-list">
+      <div class="left-grid-tasks">
+        <div class="tittle-tarefa">
+          <h3>{{ tarefa.titulo }}</h3>
+        </div>
+        <div class="description-div">
+          <p>{{ tarefa.descricao }}</p>
+        </div>
+      </div>
+      <div class="input-and-buttons-div">
+        <div class="grid-inputs-and-buttons">
+          <div class="square-div-input-and-buttons">
+            <select
+              class="buttons-inputs-list"
+              (change)="saveLocalStorage()"
+              [(ngModel)]="tarefa.categoria.nome"
+            >
+              <option *ngFor="let categoria of categorias">
+                {{ categoria.nome }}
+              </option>
+            </select>
+          </div>
+          <div class="square-div-input-and-button">
+            <button (click)="remover(tarefa)" class="buttons-inputs-list">
+              Remover
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
