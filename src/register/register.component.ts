@@ -54,20 +54,10 @@ export class RegisterComponent implements OnInit {
         cor: this.categoria.cor,
       },
     };
-    let nomeIgual: boolean = false;
-    this.tarefas.forEach((tarefaForEach) => {
-      if (tarefa.titulo == tarefaForEach.titulo) {
-        nomeIgual = true;
-      }
-    });
-    if (nomeIgual) {
-      alert("O título já existe");
-    } else {
-      this.tarefas.push(tarefa);
-      localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
-      this.tarefa.titulo = "";
-      this.tarefa.descricao = "";
-    }
+    this.tarefas.push(tarefa);
+    localStorage.setItem("Tarefas", JSON.stringify(this.tarefas));
+    this.tarefa.titulo = "";
+    this.tarefa.descricao = "";
   }
   getTarefas(categoria: Categoria): any[] {
     return this.tarefas.filter((tarefa) => {

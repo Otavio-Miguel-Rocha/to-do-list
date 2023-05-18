@@ -33,8 +33,19 @@ export class CategoriasComponent implements OnInit {
       nome: this.categoria.nome,
       cor: this.categoria.cor,
     };
-    this.categorias.push(categoria);
-    this.setLocalStorage();
+    let verificar: boolean = false;
+    this.categorias.forEach((categoriaVerificar) => {
+      if (categoriaVerificar.nome == this.categoria.nome) {
+        verificar = true;
+      }
+    });
+    if (verificar) {
+      alert("As categorias não podem ter nomes iguais!");
+    } else {
+      this.categorias.push(categoria);
+      this.setLocalStorage();
+      this.categoria.nome = "";
+    }
   }
   removerDaLista(indice: number): void {
     this.categorias.splice(indice, 1);

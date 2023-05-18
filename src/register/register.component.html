@@ -1,9 +1,14 @@
 <div id="grid-register">
   <div id="list-tasks-div" [style.background-color]="categoria.cor">
     <div class="square-list-div">
-      <h2>{{ categoria.nome }}</h2>
-      <div *ngFor="let tarefa of getTarefas(categoria)">
-        <h2>{{ tarefa.titulo }}</h2>
+      <h1>{{ categoria.nome }}</h1>
+      <div class="list-tasks">
+        <h2 id="tittle-section">Tarefas Registradas</h2>
+        <ul class="list-square">
+          <li *ngFor="let tarefa of getTarefas(categoria)">
+            <h2>- {{ tarefa.titulo }}</h2>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
