@@ -10,10 +10,15 @@
     <div class="category-list">
       <h3 id="tittle-list-category">Categorias Cadastradas</h3>
       <ul style="margin-top: 2%">
+        <div *ngIf="nenhumaCategoria">
+          <h2>As categorias criadas aparecerão aqui!</h2>
+
+        </div>
         <div
-          *ngFor="let categoria of categorias; index as indice"
+          *ngFor="let categoria of categorias;"
           class="category"
         >
+        <div *ngIf="!nenhumaCategoria">
           <li
             style="list-style-type: none"
             [style.background-color]="categoria.cor"
@@ -40,6 +45,7 @@
               </div>
             </div>
           </li>
+          </div>
         </div>
       </ul>
     </div>

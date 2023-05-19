@@ -11,14 +11,19 @@ interface Categoria {
   styleUrls: ["./categorias.component.css"],
 })
 export class CategoriasComponent implements OnInit {
+  categorias: Categoria[] = [];
+  nenhumaCategoria: boolean = false;
   ngOnInit() {
     let lista: Categoria[];
     lista = JSON.parse(localStorage.getItem("Categorias"));
-    if (lista != null) {
+    if (lista != null && lista.length != 0) {
       this.categorias = lista;
+      this.nenhumaCategoria = false;
+    } else {
+      this.nenhumaCategoria =  true;
     }
   }
-  categorias: Categoria[] = [];
+
 
   categoria: Categoria = {
     nome: "",
@@ -34,14 +39,18 @@ export class CategoriasComponent implements OnInit {
       cor: this.categoria.cor,
     };
     let verificar: boolean = false;
-    this.categorias.forEach((categoriaVerificar) => {
-      if (categoriaVerificar.nome == this.categoria.nome) {
-        verificar = true;
-      }
-    });
+
+    //metodo de array retorna o objeto e quebra o "forEach"
+    if(this.categorias.find( (categoriaVerificar) => categoriaVerificar.nome == this.categoria.nome) != null){
+      verificar = true;
+    }
+    //metodo de array retorna true e false
+    
+    
     if (verificar) {
       alert("As categorias não podem ter nomes iguais!");
     } else {
+      this.nenhumaCategoria = false;
       this.categorias.push(categoria);
       this.setLocalStorage();
       this.categoria.nome = "";
@@ -49,6 +58,9 @@ export class CategoriasComponent implements OnInit {
   }
   removerDaLista(indice: number): void {
     this.categorias.splice(indice, 1);
+    if( this.categorias.length == 0 ){
+      this.nenhumaCategoria = true;
+    }
     this.setLocalStorage();
   }
 

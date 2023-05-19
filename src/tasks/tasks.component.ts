@@ -16,6 +16,9 @@ interface Categoria {
   styleUrls: ["./tasks.component.css"],
 })
 export class TasksComponent implements OnInit {
+  tarefaRegistradas: Tarefa[];
+  categoriasRegistradas: Categoria[];
+  nenhumaCategoria: boolean = false;
   ngOnInit(): void {
     let listaTarefas: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
     if (listaTarefas != null) {
@@ -26,12 +29,13 @@ export class TasksComponent implements OnInit {
     let listaCategorias: Categoria[] = JSON.parse(
       localStorage.getItem("Categorias")
     );
-    if (listaCategorias != null) {
+    if (listaCategorias != null && listaCategorias.length != 0) {
       this.categoriasRegistradas = listaCategorias;
+      this.nenhumaCategoria = false;
+    } else {
+      this.nenhumaCategoria = true;
     }
   }
-  tarefaRegistradas: Tarefa[];
-  categoriasRegistradas: Categoria[];
 
   getTarefas(categoria: Categoria): any[] {
     return this.tarefaRegistradas.filter((tarefa) => {
@@ -48,4 +52,5 @@ export class TasksComponent implements OnInit {
   sendList(categoria: string): void {
     localStorage.setItem("CategoriaCadastro", JSON.stringify(categoria));
   }
+  //passar dados entre rotas
 }

@@ -8,7 +8,14 @@
    </div>
  </div>
  <div class="main-content-tasks">
-   <div class="scroll-bar">
+  <div *ngIf="nenhumaCategoria" class="div-zero-categories">
+    <div class="div-zero-category-content">
+      <h2> Nenhuma Categoria Cadastrada! </h2>
+      <p> Crie categorias onde você possa descrever tarefas, organizando elas pelos setores da sua vida.</p>
+      <button routerLink="/categoria" id="button-create-category"> Criar Categoria </button>
+    </div>
+  </div>
+   <div class="scroll-bar" *ngIf="!nenhumaCategoria">
      <div
        *ngFor="let categoria of categoriasRegistradas"
        class="tittle-list-grid"
