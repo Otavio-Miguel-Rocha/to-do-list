@@ -11,15 +11,7 @@
       <div class="input-and-buttons-div">
         <div class="grid-inputs-and-buttons">
           <div class="square-div-input-and-buttons">
-            <select
-              class="buttons-inputs-list"
-              (change)="saveLocalStorage()"
-              [(ngModel)]="tarefa.categoria.nome"
-            >
-              <option *ngFor="let categoria of categorias">
-                {{ categoria.nome }}
-              </option>
-            </select>
+          
           </div>
           <div class="square-div-input-and-button">
             <button (click)="remover(tarefa)" class="buttons-inputs-list">

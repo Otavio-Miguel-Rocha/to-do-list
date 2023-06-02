@@ -37,6 +37,29 @@ export class TasksComponent implements OnInit {
     }
   }
 
+  testeDALE(event):void{
+    console.log(event);
+  }
+
+  dragEnd(tarefa:Tarefa):void{
+    const categoria:Categoria = JSON.parse(localStorage.getItem("CategoriaDrag"));
+    if( categoria != null ){
+      tarefa.categoria = categoria;
+      localStorage.setItem("Tarefas",JSON.stringify(this.tarefaRegistradas));
+    }
+  }
+
+  atualizarCategoria(categoria:Categoria):void{
+    //demonstra onde é possível dropar
+    event.preventDefault();
+    localStorage.setItem("CategoriaDrag",JSON.stringify(categoria));
+  }
+
+
+
+
+
+
   getTarefas(categoria: Categoria): any[] {
     return this.tarefaRegistradas.filter((tarefa) => {
       return tarefa.categoria.nome == categoria.nome;

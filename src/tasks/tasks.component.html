@@ -20,6 +20,7 @@
        *ngFor="let categoria of categoriasRegistradas"
        class="tittle-list-grid"
        [style.background-color]="categoria.cor"
+       (dragover)="atualizarCategoria(categoria)"
      >
        <div class="category-tittle">
          <h2>{{ categoria.nome }}</h2>
@@ -27,6 +28,10 @@
        <div
          *ngFor="let tarefa of getTarefas(categoria)"
          class="div-tasks-behind"
+         draggable="true"
+         (dragend)="testeDALE($event)"
+         (dragend)="dragEnd(tarefa)"
+  
        >
          <app-task [tarefas]="tarefaRegistradas" [tarefa]="tarefa" [categoria]="categoria" [categorias]="categoriasRegistradas"></app-task>
        </div>

@@ -30,7 +30,7 @@ export class CategoriasComponent implements OnInit {
     cor: "",
   };
 
-  cadastrarTarefa(): void {
+  cadastrarCategoria(): void {
     if (this.categoria.cor == "") {
       this.categoria.cor = "#000000";
     }
@@ -40,12 +40,13 @@ export class CategoriasComponent implements OnInit {
     };
     let verificar: boolean = false;
 
-    //metodo de array retorna o objeto e quebra o "forEach"
-    if(this.categorias.find( (categoriaVerificar) => categoriaVerificar.nome == this.categoria.nome) != null){
-      verificar = true;
+    if(this.categorias != null){
+      //metodo de array retorna o objeto e quebra o "forEach"
+      if(this.categorias.find( (categoriaVerificar) => categoriaVerificar.nome == this.categoria.nome) != null){
+        verificar = true;
+      }
     }
     //metodo de array retorna true e false
-    
     
     if (verificar) {
       alert("As categorias não podem ter nomes iguais!");
@@ -56,8 +57,17 @@ export class CategoriasComponent implements OnInit {
       this.categoria.nome = "";
     }
   }
-  removerDaLista(indice: number): void {
-    this.categorias.splice(indice, 1);
+  removerDaLista(categoria: Categoria): void {
+    let tarefas = JSON.parse(localStorage.getItem('Tarefas'));
+    if( tarefas != null && tarefas.length != 0){
+      tarefas.forEach ( (tarefa) => {
+        if( tarefa.categoria.nome == categoria.nome){
+          tarefas.splice(tarefas.indexOf(tarefa),1);
+        }
+      } )
+      localStorage.setItem("Tarefas",JSON.stringify(tarefas));
+    }
+    this.categorias.splice(this.categorias.indexOf(categoria), 1);
     if( this.categorias.length == 0 ){
       this.nenhumaCategoria = true;
     }
