@@ -20,20 +20,25 @@
        *ngFor="let categoria of categoriasRegistradas"
        class="tittle-list-grid"
        [style.background-color]="categoria.cor"
-       (dragover)="atualizarCategoria(categoria)"
+       (dragover)="atualizarCategoria(categoria, $event)"
+       (drop)="drop($event)"
      >
        <div class="category-tittle">
          <h2>{{ categoria.nome }}</h2>
        </div>
        <div
-         *ngFor="let tarefa of getTarefas(categoria)"
+         *ngFor="let tarefa of getTarefas(categoria); index as index"
          class="div-tasks-behind"
-         draggable="true"
-         (dragend)="testeDALE($event)"
-         (dragend)="dragEnd(tarefa)"
-  
        >
-         <app-task [tarefas]="tarefaRegistradas" [tarefa]="tarefa" [categoria]="categoria" [categorias]="categoriasRegistradas"></app-task>
+         <app-task 
+         [tarefas]="tarefaRegistradas" 
+         [tarefa]="tarefa" 
+         [categoria]="categoria" 
+         [categorias]="categoriasRegistradas"
+          draggable="true"
+         (dragstart)="drag(tarefa)"
+         (drop)="getIndice(index, $event)"
+         ></app-task>
        </div>
        <button routerLink="/registrar-tarefa" (click)="sendList(categoria)" class="button-add">+</button>
      </div>

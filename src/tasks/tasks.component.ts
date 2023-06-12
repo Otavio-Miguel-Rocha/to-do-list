@@ -16,9 +16,14 @@ interface Categoria {
   styleUrls: ["./tasks.component.css"],
 })
 export class TasksComponent implements OnInit {
+
   tarefaRegistradas: Tarefa[];
   categoriasRegistradas: Categoria[];
   nenhumaCategoria: boolean = false;
+  indiceDrag: number = 0;
+  tarefaDrag: Tarefa = null;
+  categoriaDrop: string = "";
+
   ngOnInit(): void {
     let listaTarefas: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
     if (listaTarefas != null) {
@@ -37,28 +42,34 @@ export class TasksComponent implements OnInit {
     }
   }
 
-  testeDALE(event):void{
-    console.log(event);
-  }
 
-  dragEnd(tarefa:Tarefa):void{
-    const categoria:Categoria = JSON.parse(localStorage.getItem("CategoriaDrag"));
-    if( categoria != null ){
-      tarefa.categoria = categoria;
-      localStorage.setItem("Tarefas",JSON.stringify(this.tarefaRegistradas));
-    }
-  }
-
-  atualizarCategoria(categoria:Categoria):void{
-    //demonstra onde é possível dropar
+  //DRAG AND DROP
+  atualizarCategoria(categoria: Categoria, event: Event): void {
     event.preventDefault();
-    localStorage.setItem("CategoriaDrag",JSON.stringify(categoria));
+    this.categoriaDrop = categoria.nome;
   }
 
+  drag(tarefa: Tarefa): void {
+    this.tarefaDrag = tarefa;
+  }
 
+  getIndice(index: number, event: Event): void {
+    event.preventDefault();
+    this.indiceDrag = index;
+  }
 
+  drop(event: Event) {
+    event.preventDefault();
+    this.tarefaDrag.categoria.nome = this.categoriaDrop;
 
+    this.atualizarPosicaoArray();
+  }
 
+  atualizarPosicaoArray(): void {
+    this.tarefaRegistradas.splice(this.tarefaRegistradas.indexOf(this.tarefaDrag), 1);
+    this.tarefaRegistradas.splice(this.indiceDrag, 0, this.tarefaDrag);
+    localStorage.setItem("Tarefas", JSON.stringify(this.tarefaRegistradas));
+  }
 
   getTarefas(categoria: Categoria): any[] {
     return this.tarefaRegistradas.filter((tarefa) => {
