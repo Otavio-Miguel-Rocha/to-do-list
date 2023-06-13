@@ -1,0 +1,51 @@
+ <div class="main-content">
+   <div class="information-tasks">
+    <div class="div-informations">
+      <div>
+        <h2 class="tittle-section">Minhas Tarefas</h2>
+      </div>
+      <div>
+        <a (click)="openModal()"><h2>...</h2></a>
+        <!-- <app-modal></app-modal> -->
+      </div>
+    </div>
+     <p class="content-tasks-page">
+       Aqui você pode criar e organizar suas tarefas, descrevendo atividades e
+       afazeres do seu dia-a-dia.
+      </p>
+    </div>
+  </div>
+<div class="main-content-tasks">
+ <div class="scroll-bar" *ngIf="!nenhumaCategoria">
+   <div
+     *ngFor="let propriedade of propriedades"
+     class="tittle-list-grid"
+     [style.background-color]="propriedade.cor"
+     (dragover)="atualizarPropriedade(propriedade, $event)"
+     (drop)="drop($event)"
+   >
+     <div class="category-tittle">
+       <h2>{{ propriedade.nome }}</h2>
+     </div>
+      <div
+        *ngFor="let tarefa of getTarefas(propriedade); index as index"
+        class="div-tasks-behind"
+      >
+       <app-task 
+       [tarefasRegistradas]="tarefasRegistradas" 
+       [tarefa]="tarefa" 
+       [propriedade]="propriedade" 
+       [propriedades]="propriedades"
+        draggable="true"
+       (dragstart)="drag(tarefa)"
+       (drop)="getIndice(index, $event)"
+       ></app-task>
+     </div>
+     <button (click)="openModalNewTask(propriedade)" class="button-add">+</button>
+   </div>
+   <div class="tittle-list-grid">
+    <button (click)="openModalNewSection()" class="button-add">+</button>
+  </div>
+ </div>
+</div>
+
