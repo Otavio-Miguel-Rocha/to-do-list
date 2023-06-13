@@ -2,21 +2,30 @@
    <div class="information-tasks">
     <div class="div-informations">
       <div>
-        <h2 class="tittle-section">Minhas Tarefas</h2>
+        <h2
+        class="tittle-section" 
+        data-content-editable-leaf="true" 
+        contenteditable="true"
+        (input)="salvarTituloKanban($event.target.textContent)"
+        >{{personalizacoes.titulo}}</h2>
       </div>
       <div>
         <a (click)="openModal()"><h2>...</h2></a>
         <!-- <app-modal></app-modal> -->
       </div>
     </div>
-     <p class="content-tasks-page">
-       Aqui você pode criar e organizar suas tarefas, descrevendo atividades e
-       afazeres do seu dia-a-dia.
+     <p 
+     class="content-tasks-page"
+     data-content-editable-leaf="true" 
+      contenteditable="true"
+      (input)="salvarDescricaoKanban($event.target.textContent)"
+     >
+       {{personalizacoes.descricao}}
       </p>
     </div>
   </div>
 <div class="main-content-tasks">
- <div class="scroll-bar" *ngIf="!nenhumaCategoria">
+ <div class="scroll-bar">
    <div
      *ngFor="let propriedade of propriedades"
      class="tittle-list-grid"
@@ -25,7 +34,11 @@
      (drop)="drop($event)"
    >
      <div class="category-tittle">
-       <h2>{{ propriedade.nome }}</h2>
+       <h2
+       data-content-editable-leaf="true" 
+      contenteditable="true"
+      (input)="salvarNomePropriedade(propriedade,$event.target.textContent)"
+      >{{ propriedade.nome }}</h2>
      </div>
       <div
         *ngFor="let tarefa of getTarefas(propriedade); index as index"
@@ -46,6 +59,8 @@
    <div class="tittle-list-grid">
     <button (click)="openModalNewSection()" class="button-add">+</button>
   </div>
- </div>
 </div>
+</div>
+
+
 

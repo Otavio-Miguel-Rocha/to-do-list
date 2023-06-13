@@ -8,6 +8,10 @@ interface Propriedades {
   nome: string;
   cor: string;
 }
+interface PersonalizacaoPagina {
+  titulo: string;
+  descricao: string;
+}
 
 @Component({
   selector: "app-tasks",
@@ -16,14 +20,24 @@ interface Propriedades {
 })
 export class TasksComponent implements OnInit {
   ngOnInit(): void {
+    //TÍTULOS E DESCRIÇÕES
+    let personalizacoesInit: PersonalizacaoPagina = JSON.parse(localStorage.getItem("personalizacoes"));
+    if( personalizacoesInit != null){
+        this.personalizacoes.titulo = personalizacoesInit.titulo;
+        this.personalizacoes.descricao = personalizacoesInit.descricao;
+    } else{
+      this.personalizacoes.titulo = "Título";
+      this.personalizacoes.descricao = "Descrição";
+    }
 
+    //TAREFAS
     let listaTarefas: Tarefa[] = JSON.parse(localStorage.getItem("Tarefas"));
     if (listaTarefas != null) {
       this.tarefasRegistradas = listaTarefas;
     }
-
-    let localStorageTestProperties = JSON.parse(localStorage.getItem("Categorias"));
-    
+    //PROPRIEDADES
+    let localStorageTestProperties = JSON.parse(localStorage.getItem("Propriedades"));
+    console.log(localStorageTestProperties);
     if (localStorageTestProperties != null && localStorageTestProperties.length != 0) {
       this.propriedades = localStorageTestProperties;
     } else {
@@ -32,10 +46,18 @@ export class TasksComponent implements OnInit {
         cor: "#FFFFFF",
       };
       this.propriedades.push(propriedadeVazia);
+      this.propriedades.push(propriedadeVazia);
+      this.propriedades.push(propriedadeVazia);
+      this.propriedades.push(propriedadeVazia);
+      this.propriedades.push(propriedadeVazia);
+
       localStorage.setItem("Propriedades", JSON.stringify(this.propriedades));
     }
   }
-
+  personalizacoes: PersonalizacaoPagina = {
+    titulo: "",
+    descricao:"",
+  };
 
   tarefasRegistradas: Tarefa[] = [];
   propriedades: Propriedades[] = [];
@@ -45,8 +67,18 @@ export class TasksComponent implements OnInit {
   tarefaDrag: Tarefa = null;
   propriedadeDrop: string = "";
 
-
-
+  salvarTituloKanban(novoTitulo: string):void{
+    this.personalizacoes.titulo = novoTitulo;
+    localStorage.setItem('personalizacoes', JSON.stringify(this.personalizacoes));
+  }
+  salvarDescricaoKanban(novaDescricao: string):void{
+    this.personalizacoes.descricao = novaDescricao;
+    localStorage.setItem('personalizacoes', JSON.stringify(this.personalizacoes));
+  }
+  salvarNomePropriedade(propriedade:Propriedades,novoNome: string):void{
+    propriedade.nome = novoNome;
+    localStorage.setItem('Propriedades', JSON.stringify(this.propriedades));
+  }
 
   openModalNewTask(propriedade:Propriedades):void{
     const tarefa: Tarefa = {
@@ -89,7 +121,6 @@ export class TasksComponent implements OnInit {
   }
 
   getTarefas(propriedade: Propriedades): any[] {
-    console.log(propriedade);
     return this.tarefasRegistradas.filter((tarefa) => {
       return tarefa.propriedades.nome == propriedade.nome;
     });
