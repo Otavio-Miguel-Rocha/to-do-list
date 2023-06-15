@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 
 interface Tarefa {
   titulo: string;
-  propriedades: Propriedades;
+  campos: Campos;
 }
-interface Propriedades {
+interface Campos {
   nome: string;
   cor: string;
 }
@@ -35,23 +35,19 @@ export class TasksComponent implements OnInit {
     if (listaTarefas != null) {
       this.tarefasRegistradas = listaTarefas;
     }
-    //PROPRIEDADES
-    let localStorageTestProperties = JSON.parse(localStorage.getItem("Propriedades"));
-    console.log(localStorageTestProperties);
-    if (localStorageTestProperties != null && localStorageTestProperties.length != 0) {
-      this.propriedades = localStorageTestProperties;
+    //CAMPOS
+    let localStorageTestarCampos = JSON.parse(localStorage.getItem("Campos"));
+    console.log(localStorageTestarCampos);
+    if (localStorageTestarCampos != null && localStorageTestarCampos.length != 0) {
+      this.campos = localStorageTestarCampos;
     } else {
-      const propriedadeVazia:Propriedades = {
+      const campoVazio:Campos = {
         nome: "Sem Classificação",
         cor: "#FFFFFF",
       };
-      this.propriedades.push(propriedadeVazia);
-      this.propriedades.push(propriedadeVazia);
-      this.propriedades.push(propriedadeVazia);
-      this.propriedades.push(propriedadeVazia);
-      this.propriedades.push(propriedadeVazia);
+      this.campos.push(campoVazio);
 
-      localStorage.setItem("Propriedades", JSON.stringify(this.propriedades));
+      localStorage.setItem("Campos", JSON.stringify(this.campos));
     }
   }
   personalizacoes: PersonalizacaoPagina = {
@@ -60,12 +56,9 @@ export class TasksComponent implements OnInit {
   };
 
   tarefasRegistradas: Tarefa[] = [];
-  propriedades: Propriedades[] = [];
+  campos: Campos[] = [];
 
-  //DRAG AND DROP
-  indiceDrag: number = 0;
-  tarefaDrag: Tarefa = null;
-  propriedadeDrop: string = "";
+
 
   salvarTituloKanban(novoTitulo: string):void{
     this.personalizacoes.titulo = novoTitulo;
@@ -75,27 +68,30 @@ export class TasksComponent implements OnInit {
     this.personalizacoes.descricao = novaDescricao;
     localStorage.setItem('personalizacoes', JSON.stringify(this.personalizacoes));
   }
-  salvarNomePropriedade(propriedade:Propriedades,novoNome: string):void{
-    propriedade.nome = novoNome;
-    localStorage.setItem('Propriedades', JSON.stringify(this.propriedades));
+  salvarNomeCampo(campo:Campos,novoNome: string):void{
+    campo.nome = novoNome;
+    localStorage.setItem('Campos', JSON.stringify(this.campos));
   }
 
-  openModalNewTask(propriedade:Propriedades):void{
+  openModalNewTask(campo:Campos):void{
     const tarefa: Tarefa = {
       titulo: "Insira o nome",
-      propriedades: propriedade
+      campos: campo,
     };
     this.tarefasRegistradas.push(tarefa);
+    console.log(this.tarefasRegistradas);
     localStorage.setItem("Tarefas", JSON.stringify(this.tarefasRegistradas));
-  }
-  openModalNewSection():void{
-    
   }
 
   //DRAG AND DROP
-  atualizarPropriedade(propriedade: Propriedades, event: Event): void {
+  indiceDrag: number = 0;
+  tarefaDrag: Tarefa = null;
+  campoDrop: string = "";
+  //DRAG AND DROP
+  atualizarCampo(campo:Campos, event: Event): void {
     event.preventDefault();
-    this.propriedadeDrop = propriedade.nome;
+    this.campoDrop = campo.nome;
+    console.log(this.campoDrop);
   }
 
   drag(tarefa: Tarefa): void {
@@ -109,7 +105,11 @@ export class TasksComponent implements OnInit {
 
   drop(event: Event) {
     event.preventDefault();
-    this.tarefaDrag.propriedades.nome = this.propriedadeDrop;
+    const newCampo: Campos = {
+      nome: this.campoDrop,
+      cor: this.tarefaDrag.campos.cor
+    };
+    this.tarefaDrag.campos = newCampo;
 
     this.atualizarPosicaoArray();
   }
@@ -120,9 +120,9 @@ export class TasksComponent implements OnInit {
     this.setTarefaLocalStorage();
   }
 
-  getTarefas(propriedade: Propriedades): any[] {
+  getTarefas(campo:Campos): any[] {
     return this.tarefasRegistradas.filter((tarefa) => {
-      return tarefa.propriedades.nome == propriedade.nome;
+      return tarefa.campos.nome == campo.nome;
     });
   }
   remover(objeto: Tarefa): void {
@@ -133,6 +133,17 @@ export class TasksComponent implements OnInit {
   mudarCategoria(): void {
     this.setTarefaLocalStorage();
   }
+
+  novoCampo():void{
+    const novoCampo:Campos = {
+      nome: "Insira o Título",
+      cor: "",
+    }
+    this.campos.push(novoCampo);
+    localStorage.setItem("Campos",JSON.stringify(this.campos));
+  }
+
+
   setTarefaLocalStorage():void{
     localStorage.setItem("Tarefas", JSON.stringify(this.tarefasRegistradas));
   }

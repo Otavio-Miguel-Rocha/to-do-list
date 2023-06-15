@@ -2,10 +2,9 @@ import { Component, Input } from "@angular/core";
 
 interface Tarefa {
     titulo: string,
-    descricao: string,
-    propriedades: Propriedades;
+    campo: Campos,
 }
-interface Propriedades {
+interface Campos {
   nome: string;
   cor: string;
 }
@@ -22,10 +21,15 @@ export class TaskComponent{
     tarefa: Tarefa;
 
     @Input()
-    propriedade: Propriedades;
+    campo: Campos;
 
     @Input()
-    propriedades: Propriedades[];
+    campos: Campos[];
+
+    salvarNovoTitulo(novoTitulo : string):void{
+        this.tarefa.titulo = novoTitulo;
+        this.setTarefaLocalStorage();
+    }
 
     remover(objeto: Tarefa): void {
         this.tarefasRegistradas.splice(this.tarefasRegistradas.indexOf(objeto), 1);

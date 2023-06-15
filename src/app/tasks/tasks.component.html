@@ -3,9 +3,10 @@
     <div class="div-informations">
       <div>
         <h2
-        class="tittle-section" 
+        class="tittle-section edit" 
         data-content-editable-leaf="true" 
         contenteditable="true"
+        [class.editable]="isEditable"
         (input)="salvarTituloKanban($event.target.textContent)"
         >{{personalizacoes.titulo}}</h2>
       </div>
@@ -15,9 +16,10 @@
       </div>
     </div>
      <p 
-     class="content-tasks-page"
+     class="content-tasks-page edit"
      data-content-editable-leaf="true" 
       contenteditable="true"
+      [class.editable]="isEditable"
       (input)="salvarDescricaoKanban($event.target.textContent)"
      >
        {{personalizacoes.descricao}}
@@ -27,37 +29,39 @@
 <div class="main-content-tasks">
  <div class="scroll-bar">
    <div
-     *ngFor="let propriedade of propriedades"
+     *ngFor="let campo of campos"
      class="tittle-list-grid"
-     [style.background-color]="propriedade.cor"
-     (dragover)="atualizarPropriedade(propriedade, $event)"
+     [style.background-color]="campo.cor"
+     (dragover)="atualizarCampo(campo, $event)"
      (drop)="drop($event)"
    >
      <div class="category-tittle">
        <h2
+       class="edit"
        data-content-editable-leaf="true" 
       contenteditable="true"
-      (input)="salvarNomePropriedade(propriedade,$event.target.textContent)"
-      >{{ propriedade.nome }}</h2>
+      [class.editable]="isEditable"
+      (input)="salvarNomeCampo(campo,$event.target.textContent)"
+      >{{ campo.nome }}</h2>
      </div>
       <div
-        *ngFor="let tarefa of getTarefas(propriedade); index as index"
+        *ngFor="let tarefa of getTarefas(campo); index as index"
         class="div-tasks-behind"
       >
        <app-task 
        [tarefasRegistradas]="tarefasRegistradas" 
        [tarefa]="tarefa" 
-       [propriedade]="propriedade" 
-       [propriedades]="propriedades"
-        draggable="true"
+       [campo]="campo" 
+       [campos]="campos"
+       draggable="true"
        (dragstart)="drag(tarefa)"
        (drop)="getIndice(index, $event)"
        ></app-task>
      </div>
-     <button (click)="openModalNewTask(propriedade)" class="button-add">+</button>
+     <button (click)="openModalNewTask(campo)" class="button-add">+</button>
    </div>
    <div class="tittle-list-grid">
-    <button (click)="openModalNewSection()" class="button-add">+</button>
+    <button (click)="novoCampo()" class="button-add">+</button>
   </div>
 </div>
 </div>

@@ -26,11 +26,16 @@
 }
 .content-tasks-page {
   display: flex;
-  height: 10%;
+  height: 100%;
   margin-top: 1%;
 }
 /*  */
-
+.edit{
+  outline: none;
+}
+.edit:hover{
+  background-color: rgb(233, 222, 222);
+}
 /* list-tasks */
 .main-content-tasks {
   display: flex;
