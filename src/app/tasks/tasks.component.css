@@ -28,6 +28,7 @@
   display: flex;
   height: 100%;
   margin-top: 1%;
+  width: 70%;
 }
 /*  */
 .edit{
@@ -94,4 +95,9 @@
   cursor: pointer;
   border-bottom: 0px;
   border:none;
+}
+
+#options-property{
+  display: flex;
+  cursor: pointer;
 }

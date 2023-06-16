@@ -11,8 +11,8 @@
         >{{personalizacoes.titulo}}</h2>
       </div>
       <div>
-        <a (click)="openModal()"><h2>...</h2></a>
-        <!-- <app-modal></app-modal> -->
+        <a (click)="openModalProperties()"><h2 id="options-property">...</h2></a>
+        <app-modal-properties *ngIf="modalProperties"></app-modal-properties>
       </div>
     </div>
      <p 
@@ -58,7 +58,7 @@
        (drop)="getIndice(index, $event)"
        ></app-task>
      </div>
-     <button (click)="openModalNewTask(campo)" class="button-add">+</button>
+     <button (click)="newTask(campo)" class="button-add">+</button>
    </div>
    <div class="tittle-list-grid">
     <button (click)="novoCampo()" class="button-add">+</button>

@@ -72,8 +72,17 @@ export class TasksComponent implements OnInit {
     campo.nome = novoNome;
     localStorage.setItem('Campos', JSON.stringify(this.campos));
   }
-
-  openModalNewTask(campo:Campos):void{
+  //
+  modalProperties:boolean = false;
+  openModalProperties():void{
+    if(this.modalProperties){
+      this.modalProperties = false;
+    }
+    else{
+      this.modalProperties = true;
+    }
+  }
+  newTask(campo:Campos):void{
     const tarefa: Tarefa = {
       titulo: "Insira o nome",
       campos: campo,
