@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NavegationComponent } from './navegation/navegation.component';
 import { AppRountingModule } from './app-routing.module';
 import { NavegationModule } from './navegation/navegation.module';
 import { TasksModule } from './tasks/tasks.module';

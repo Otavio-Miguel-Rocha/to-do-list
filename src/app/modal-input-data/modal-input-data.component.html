@@ -1,0 +1,27 @@
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="fecharModalInputData()">&times;</span>
+    <div class="container">
+      <h2>Cadastrar Nova Propriedade</h2>
+      <div class="form-group">
+        <label>Nome:</label>
+        <input type="text" [(ngModel)]="propriedadeNova.nome">
+      </div>
+      <div class="form-group">
+        <label for="dataType">Tipo de Dado:</label>
+        <select id="dataType" [(ngModel)]="propriedadeNova.tipoDeDado">
+          <option value="string">Texto</option>
+          <option value="integer">Número</option>
+          <option value="array">Seleção</option>
+        </select>
+        <div *ngIf="propriedadeNova.tipoDeDado == 'array'">
+          <div *ngFor="let opcao of listaDeOpcoes; index as index">
+            <input type="text" (change)="teste(index)">
+          </div>  
+          <button id="button-add-more" (click)="adicionarMaisUmaOpcao()">+</button>
+        </div>
+        <button (click)="cadastrarPropriedade()">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+</div>

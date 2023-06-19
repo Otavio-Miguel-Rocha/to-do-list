@@ -96,8 +96,6 @@
   border-bottom: 0px;
   border:none;
 }
-
-#options-property{
-  display: flex;
+.cursor-pointer{
   cursor: pointer;
 }

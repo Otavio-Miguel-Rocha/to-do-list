@@ -11,8 +11,12 @@
         >{{personalizacoes.titulo}}</h2>
       </div>
       <div>
-        <a (click)="openModalProperties()"><h2 id="options-property">...</h2></a>
-        <app-modal-properties *ngIf="modalProperties"></app-modal-properties>
+        <a (click)="openModalProperties()"><h2 class="cursor-pointer">...</h2></a>
+        <div *ngIf="modalProperties">
+          <ul>
+            <a class="cursor-pointer" (click)="cadastrarNovaPropriedadeModal()"><li>Cadastrar Propriedade</li></a>
+          </ul>
+        </div>
       </div>
     </div>
      <p 
@@ -63,8 +67,15 @@
    <div class="tittle-list-grid">
     <button (click)="novoCampo()" class="button-add">+</button>
   </div>
+  </div>
 </div>
-</div>
+<app-modal-input-data 
+*ngIf="modalInputData"
+(fecharModal)="fecharNovaPropriedadeModal"
+>
+
+  
+</app-modal-input-data>
 
 
 

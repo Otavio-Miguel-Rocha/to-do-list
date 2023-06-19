@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 interface Tarefa {
   titulo: string;
@@ -19,6 +19,8 @@ interface PersonalizacaoPagina {
   styleUrls: ["./tasks.component.css"],
 })
 export class TasksComponent implements OnInit {
+
+
   ngOnInit(): void {
     //TÍTULOS E DESCRIÇÕES
     let personalizacoesInit: PersonalizacaoPagina = JSON.parse(localStorage.getItem("personalizacoes"));
@@ -49,7 +51,12 @@ export class TasksComponent implements OnInit {
 
       localStorage.setItem("Campos", JSON.stringify(this.campos));
     }
+
   }
+ 
+  //MODAIS
+  modalInputData:boolean = true;
+
   personalizacoes: PersonalizacaoPagina = {
     titulo: "",
     descricao:"",
@@ -82,6 +89,14 @@ export class TasksComponent implements OnInit {
       this.modalProperties = true;
     }
   }
+
+  cadastrarNovaPropriedadeModal():void{
+    this.modalInputData = true;
+  }
+  fecharNovaPropriedadeModal():void{
+    this.modalInputData = false;
+  }
+
   newTask(campo:Campos):void{
     const tarefa: Tarefa = {
       titulo: "Insira o nome",
