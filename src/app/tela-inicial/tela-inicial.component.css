@@ -1,0 +1,21 @@
+#secao-tela-inicial{
+    display: flex;
+    width: 100%;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+}
+#div-container-formulario{
+    display: flex;
+    width: 25%;
+    height: 50%;
+    background-color: white;
+    justify-content: center;
+}
+#formulario-login{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+}

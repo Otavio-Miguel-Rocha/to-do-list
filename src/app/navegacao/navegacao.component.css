@@ -1,0 +1,17 @@
+.navegacao{
+    display: flex;
+    width: 100vw;
+    height: 10vh;
+}
+#itens-navegacao{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+.item-navegacao{
+    list-style-type: none;
+    font-size: 24px;
+}
