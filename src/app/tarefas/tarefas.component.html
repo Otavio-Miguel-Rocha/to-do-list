@@ -1,0 +1,29 @@
+<section id="secao-tarefas">
+  <div id="conteudo-principal">
+    <div id="informacoes-sobre-pagina">
+      <h2>Informações</h2>
+      <button [disabled]="!validaPermissaoPropriedade('Add')" (click)="adicionarTarefa()" class="cursor-pointer">Cadastrar Propriedade</button>
+      <button [disabled]="!validaPermissaoTarefa('Add')" (click)="adicionarTarefa()" class="cursor-pointer">Cadastrar Tarefa</button>
+    </div>
+    <div id="conteudo-tarefas">
+      
+    </div>
+    <button [disabled]="!validaPermissaoTarefa('Edit')" (click)="editarTarefa()" class="cursor-pointer">Editar</button>
+    <button [disabled]="!validaPermissaoTarefa('Move')" (click)="moverTarefa()" class="cursor-pointer">Mover</button>
+    <button [disabled]="!validaPermissaoTarefa('Remove')" (click)="removerTarefa()" class="cursor-pointer">Remover</button>
+  </div>
+</section>
+
+<!-- MODAL -->
+<app-modal-cadastrar-dados 
+*ngIf="modalCadastrarDados"
+(fecharModalAtual)="fecharModalCadastrarDados()"
+>
+  <ng-container title>Teste</ng-container>
+  <ng-container corpo>Teste</ng-container>
+  <ng-container botao>
+    <button>Confirmar</button>
+  </ng-container>
+</app-modal-cadastrar-dados>
+
+

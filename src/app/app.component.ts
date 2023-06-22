@@ -10,7 +10,7 @@ import { UserRepository } from 'src/repositories/user.repository';
 export class AppComponent {
   title = 'todo-list';
 
-  private userId: string = 'henrique.santos';
+  private userId: string = 'joao.silva';
   private users: User[] = [];
   user: User;
 
@@ -19,6 +19,7 @@ export class AppComponent {
   ) {
     this.users = this.userRepository.getUsers();
     this.user = this.getUsuarioLogado();
+    localStorage.setItem("UsuarioLogado", JSON.stringify(this.user));
     console.log(this.user);
   }
 
