@@ -13,10 +13,6 @@ export class TarefasComponent implements OnInit {
   }
 
   ngOnInit() {
-    let validaUsuario: User = JSON.parse(localStorage.getItem("UsuarioLogado"));
-    if (validaUsuario != null) {
-      this.usuario = validaUsuario;
-    }
   }
 
 

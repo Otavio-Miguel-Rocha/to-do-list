@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from 'src/models/users/user';
 import { UserRepository } from 'src/repositories/user.repository';
+import { TesteService } from 'src/services/teste.service';
 
 @Component({
   selector: 'app-root',
@@ -15,44 +16,22 @@ export class AppComponent {
   user: User;
 
   constructor(
-    private userRepository: UserRepository
+    private userRepository: UserRepository,
+    private testeService: TesteService
   ) {
-    this.users = this.userRepository.getUsers();
-    this.user = this.getUsuarioLogado();
-    localStorage.setItem("UsuarioLogado", JSON.stringify(this.user));
-    console.log(this.user);
-  }
-
-  adicionarTarefa(): void {
-    if (!this.hasPermission('Add')) {
-      alert('Não pode cadastrar');
-      return;
-    }
-    alert('Pode cadastrar');
-  }
-
-  editarTarefa(): void {
-    if (!this.hasPermission('Edit')) {
-      alert('Não pode cadastrar');
-      return;
-    }
-    alert('Pode cadastrar');
-  }
-
-  removerTarefa(): void {
-    if (!this.hasPermission('Remove')) {
-      alert('Não pode cadastrar');
-      return;
-    }
-    alert('Pode cadastrar');
-  }
-
-  hasPermission(permission: string): boolean {
-    return this.user.cardPermissions.some((cardPermission) => {
-      return cardPermission === permission;
+    userRepository.getUsers().subscribe({
+      next: (value) => {
+        this.users = value;
+        this.user = this.getUsuarioLogado();
+      }
+    })
+    testeService.getTema().subscribe({
+      next: (tema => {
+        console.log(tema);
+      })
     });
+    //getter and setter
   }
-
   private getUsuarioLogado(): User {
     return this.users.find((user) => {
       return user.id === this.userId
