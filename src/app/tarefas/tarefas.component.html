@@ -1,16 +1,15 @@
 <section id="secao-tarefas">
   <div id="conteudo-principal">
-    <div id="informacoes-sobre-pagina">
-      <h2>Informações</h2>
-      <button [disabled]="!validaPermissaoPropriedade('Add')" (click)="adicionarTarefa()" class="cursor-pointer">Cadastrar Propriedade</button>
+    <div id="botoes-acao-cadastro">
+      <button [disabled]="!validaPermissaoPropriedade('Add')" (click)="adicionarPropriedade()" class="cursor-pointer">Cadastrar Propriedade</button>
       <button [disabled]="!validaPermissaoTarefa('Add')" (click)="adicionarTarefa()" class="cursor-pointer">Cadastrar Tarefa</button>
     </div>
     <div id="conteudo-tarefas">
       
+      <button [disabled]="!validaPermissaoTarefa('Edit')" (click)="editarTarefa()" class="cursor-pointer">Editar</button>
+      <button [disabled]="!validaPermissaoTarefa('Move')" (click)="moverTarefa()" class="cursor-pointer">Mover</button>
+      <button [disabled]="!validaPermissaoTarefa('Remove')" (click)="removerTarefa()" class="cursor-pointer">Remover</button>
     </div>
-    <button [disabled]="!validaPermissaoTarefa('Edit')" (click)="editarTarefa()" class="cursor-pointer">Editar</button>
-    <button [disabled]="!validaPermissaoTarefa('Move')" (click)="moverTarefa()" class="cursor-pointer">Mover</button>
-    <button [disabled]="!validaPermissaoTarefa('Remove')" (click)="removerTarefa()" class="cursor-pointer">Remover</button>
   </div>
 </section>
 
@@ -19,10 +18,42 @@
 *ngIf="modalCadastrarDados"
 (fecharModalAtual)="fecharModalCadastrarDados()"
 >
-  <ng-container title>Teste</ng-container>
-  <ng-container corpo>Teste</ng-container>
-  <ng-container botao>
-    <button>Confirmar</button>
+  <ng-container titulo>{{tituloModal}}</ng-container>
+  <ng-container corpo>
+    <form id="forms-propriedade">
+      <div class="forms-label-input-propriedade">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome">
+      </div>
+      <div class="forms-label-input-propriedade">
+        <label for="nome">Tipo de Dado</label>
+        <div class="selecao-tipo-dado">
+          <div class="forms-label-input-propriedade">
+            <label for="texto">Texto</label>
+            <input (click)="atualizarTipoDadoPropriedade('Texto')" type="checkbox" name="texto" id="texto" [checked]="tipoDadoTexto">
+          </div>
+          <div class="forms-label-input-propriedade">
+            <label for="numero">Número</label>
+            <input (click)="atualizarTipoDadoPropriedade('Numero')" type="checkbox" name="numero" id="numero" [checked]="tipoDadoNumero">
+          </div>
+          <div class="forms-label-input-propriedade">
+            <label for="selecao">Seleção</label>
+            <input (click)="atualizarTipoDadoPropriedade('Selecao')" type="checkbox" name="selecao" id="selecao" [checked]="tipoDadoSelecao">
+          </div>
+        </div>
+        <form *ngIf="tipoDadoSelecao" id="form-propriedade-selecao-itens">
+          <h2>Insira as Opções</h2>
+          <div *ngFor="let opcao of listaOpcoesSelecao; index as index">
+            <div class="linha-input-opcao">
+              <input [(ngModel)]="opcao.name" name="opcao{{index}}" [value]="opcao.name">
+              <p class="cursor-pointer" (click)="removerOpcaoSelecaoPropriedade(opcao)">❌</p>
+            </div>
+          </div>
+          <button (click)="adicionarOpcaoSelecaoPropriedade()">+</button>
+        </form>
+      </div>
+      <button type="submit">Confirmar</button>
+    </form>
   </ng-container>
 </app-modal-cadastrar-dados>
 

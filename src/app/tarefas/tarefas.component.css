@@ -9,10 +9,11 @@
     width: 95%;
     flex-direction: column;
 }
-#informacoes-sobre-pagina{
+#botoes-acao-cadastro{
     display: flex;
     height: 20%;
     width: 100%;
+    justify-content: end;
 }
 #conteudo-tarefas{
   display: flex;
@@ -26,3 +27,52 @@
   column-gap: 2%;
   row-gap: 2%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* MODAL CADASTRAR PROPRIEDADES */
+#forms-propriedade{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 100%;
+}
+.forms-label-input-propriedade{
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+.selecao-tipo-dado{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+#form-propriedade-selecao-itens{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+.linha-input-opcao{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+/*  */

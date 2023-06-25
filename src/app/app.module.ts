@@ -8,7 +8,7 @@ import { NavegacaoComponent } from './navegacao/navegacao.component';
 import { AppRountingModule } from './app-routing.module';
 import { TarefasModule } from './tarefas/tarefas.module';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthGuardService } from 'src/services/auth-guard.service';
+// import { AuthGuardService } from 'src/services/auth-guard.service';
 import { TesteService } from 'src/services/teste.service';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { TesteService } from 'src/services/teste.service';
   ],
   providers: [
     UserRepository,
-    AuthGuardService,
+    // AuthGuardService,
     TesteService
   ],
   bootstrap: [AppComponent]

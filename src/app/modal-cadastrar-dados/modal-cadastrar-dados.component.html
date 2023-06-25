@@ -4,8 +4,8 @@
       <a (click)="fecharModal()" class="cursor-pointer" id="seta-fechar-modal">X</a>
     </div>
     <form id="modal-conteudo">
-      <ng-content select=[titulo]></ng-content>
-      <ng-content select=[corpo]></ng-content>
+      <ng-content select=[titulo] id="titulo"></ng-content>
+      <ng-content select=[corpo] id="corpo"></ng-content>
       <ng-content select=[botao]></ng-content>
     </form>
   </div>
