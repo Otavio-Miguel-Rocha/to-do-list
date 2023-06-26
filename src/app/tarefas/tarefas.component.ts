@@ -1,3 +1,4 @@
+import { ThrowStmt } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { Option } from "src/models/properties/options/options";
 import { Property } from "src/models/properties/properties";
@@ -90,93 +91,111 @@ export class TarefasComponent implements OnInit {
   }
   //Funções Modais
   
-  //Nova Propriedade
-  propriedadeASerCadastrada: Property = new Property();
-  //Caixas de Seleção
-  tipoDadoTexto: boolean;
-  tipoDadoNumero: boolean;
-  tipoDadoSelecao: boolean;
-  atualizarTipoDadoPropriedade(tipoDado: string): void {
-    if (tipoDado == "Texto" && !this.tipoDadoTexto) {
-      this.tipoDadoTexto = true;
-      this.tipoDadoNumero = false;
-      this.tipoDadoSelecao = false;
-    } else if (tipoDado == "Numero" && !this.tipoDadoNumero) {
-      this.tipoDadoTexto = false;
-      this.tipoDadoNumero = true;
-      this.tipoDadoSelecao = false;
-    } else if (tipoDado == "Selecao" && !this.tipoDadoSelecao) {
-      this.tipoDadoTexto = false;
-      this.tipoDadoNumero = false;
-      this.tipoDadoSelecao = true;
-    } else {
-      this.tipoDadoTexto = false;
-      this.tipoDadoNumero = false;
-      this.tipoDadoSelecao = false;
-    }
-  }
-  //
-  //Opção de Tipo de Dado: Seleção
-  listaOpcoesSelecao: Option[] = [];
-  adicionarOpcaoSelecaoPropriedade(): void {
-    this.listaOpcoesSelecao.push(new Option());
-  }
-  removerOpcaoSelecaoPropriedade(opcao: Option): void {
-    this.listaOpcoesSelecao.splice(this.listaOpcoesSelecao.indexOf(opcao), 1);
-  }
-  cadastrarPropriedadeNova(): void {
-    if (this.validacoesCamposCadastroPropriedades()) {
-      this.propriedadeASerCadastrada.id = this.gerarID();
-      const novaPropriedade:Property = {
-        id: this.propriedadeASerCadastrada.id,
-        name: this.propriedadeASerCadastrada.name,
-        typeOfData: this.propriedadeASerCadastrada.typeOfData,
-      }
-      this.listaPropriedades.push(novaPropriedade);
-      this.setPropriedades();
-      this.propriedadeASerCadastrada.id = "";
-      this.propriedadeASerCadastrada.name = "";
-      this.propriedadeASerCadastrada.typeOfData = "";
-      this.atualizarTipoDadoPropriedade("Limpar");
-      this.fecharModal();
-    }
-  }
-  validacoesCamposCadastroPropriedades(): boolean {
-    //Nome
-    if (this.propriedadeASerCadastrada.name == "") {
-      console.log("Nome deve ser preenchido");
-      return false;
-    }
-    //
-    //Tipo de Dados
-    if (this.tipoDadoTexto) {
-      this.propriedadeASerCadastrada.typeOfData = "Texto";
-      return true;
-    } else if (this.tipoDadoNumero) {
-      this.propriedadeASerCadastrada.typeOfData = 0;
-      return true;
-    } else if (this.tipoDadoSelecao) {
-      this.propriedadeASerCadastrada.typeOfData = this.listaOpcoesSelecao;
-      return true;
-    } else {
-      console.log("É necessário escolher algum paramêtro de dados");
-      return false;
-    }
-    //
-  }
-  gerarID(): string {
-    const ultimaPropriedade = this.listaPropriedades[this.listaPropriedades.length - 1];
-    let id = 0;
-    if (ultimaPropriedade) {
-      const limpaString = /(\d+)$/;
-      const idEncontrada = limpaString.exec(ultimaPropriedade.id);
-      if (idEncontrada) {
-        id = parseInt(idEncontrada[0]);
+    //Nova Propriedade
+    propriedadeASerCadastrada: Property = new Property();
+    //Caixas de Seleção
+    tipoDadoTexto: boolean;
+    tipoDadoNumero: boolean;
+    tipoDadoSelecao: boolean;
+    atualizarTipoDadoPropriedade(tipoDado: string): void {
+      if (tipoDado == "Texto" && !this.tipoDadoTexto) {
+        this.tipoDadoTexto = true;
+        this.tipoDadoNumero = false;
+        this.tipoDadoSelecao = false;
+      } else if (tipoDado == "Numero" && !this.tipoDadoNumero) {
+        this.tipoDadoTexto = false;
+        this.tipoDadoNumero = true;
+        this.tipoDadoSelecao = false;
+      } else if (tipoDado == "Selecao" && !this.tipoDadoSelecao) {
+        this.tipoDadoTexto = false;
+        this.tipoDadoNumero = false;
+        this.tipoDadoSelecao = true;
+      } else {
+        this.tipoDadoTexto = false;
+        this.tipoDadoNumero = false;
+        this.tipoDadoSelecao = false;
+        this.listaOpcoesSelecao = [];
       }
     }
-    const novoID = (id + 1).toString();
-    return `id_${novoID}`;
+    //
+    //Opção de Tipo de Dado: Seleção
+    listaOpcoesSelecao: Option[] = [];
+    adicionarOpcaoSelecaoPropriedade(): void {
+      this.listaOpcoesSelecao.push(new Option());
+    }
+    removerOpcaoSelecaoPropriedade(opcao: Option): void {
+      this.listaOpcoesSelecao.splice(this.listaOpcoesSelecao.indexOf(opcao), 1);
+    }
+    cadastrarPropriedadeNova(): void {
+      if (this.validacoesCamposCadastroPropriedades(this.propriedadeASerCadastrada)) {
+        this.propriedadeASerCadastrada.id = this.gerarID();
+        const novaPropriedade:Property = {
+          id: this.propriedadeASerCadastrada.id,
+          name: this.propriedadeASerCadastrada.name,
+          typeOfData: this.propriedadeASerCadastrada.typeOfData,
+        }
+        this.listaPropriedades.push(novaPropriedade);
+        this.setPropriedades();
+        this.propriedadeASerCadastrada.id = "";
+        this.propriedadeASerCadastrada.name = "";
+        this.propriedadeASerCadastrada.typeOfData = "";
+        this.atualizarTipoDadoPropriedade("Limpar");
+        this.fecharModal();
+      }
+    }
+    validacoesCamposCadastroPropriedades(propriedadeValidacao:Property): boolean {
+      //Nome
+      if (propriedadeValidacao.name == "") {
+        console.log("Nome deve ser preenchido");
+        return false;
+      }
+      //
+      //Tipo de Dados
+      if (this.tipoDadoTexto) {
+        this.propriedadeASerCadastrada.typeOfData = "Texto";
+        return true;
+      } else if (this.tipoDadoNumero) {
+        this.propriedadeASerCadastrada.typeOfData = 0;
+        return true;
+      } else if (this.tipoDadoSelecao) {
+        this.propriedadeASerCadastrada.typeOfData = this.listaOpcoesSelecao;
+        return true;
+      } else {
+        console.log("É necessário escolher algum paramêtro de dados");
+        return false;
+      }
+      //
+    }
+    gerarID(): string {
+      const ultimaPropriedade = this.listaPropriedades[this.listaPropriedades.length - 1];
+      let id = 0;
+      if (ultimaPropriedade) {
+        const limpaString = /(\d+)$/;
+        const idEncontrada = limpaString.exec(ultimaPropriedade.id);
+        if (idEncontrada) {
+          id = parseInt(idEncontrada[0]);
+        }
+      }
+      const novoID = (id + 1).toString();
+      return `id_${novoID}`;
+    }
+  //Editar Propriedade
+  propriedadeEmEdicao: Property;
+  edicaoOuCadastroPropriedade: boolean = false;
+  editarPropriedadeExistente(posicao:number):void{
+    this.propriedadeEmEdicao = this.listaPropriedades[posicao];
   }
+  confirmarEdicaoPropriedade():void{
+    if(this.validacoesCamposCadastroPropriedades(this.propriedadeEmEdicao)){
+      this.listaPropriedades.find((propriedade) => {
+        if(propriedade.id == this.propriedadeEmEdicao.id){
+          propriedade = this.propriedadeEmEdicao;
+        }
+      });
+      this.setPropriedades(); 
+    }
+  }
+
 
 //LOCAL STORAGE (FUTURA API)
 setPropriedades():void{

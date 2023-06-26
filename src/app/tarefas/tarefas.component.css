@@ -87,3 +87,15 @@
 
 
 /*  */
+/* MODAL EDITAR PROPRIEDADE */
+#propriedade-edicao-lista{
+    display: flex;
+    width: 80%;
+    margin-top: 2%;
+}
+.propriedade-informacoes-edicao{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}

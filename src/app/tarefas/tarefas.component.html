@@ -21,10 +21,12 @@
 >
   <ng-container titulo>Adicione Uma Propriedade</ng-container>
   <ng-container corpo>
+    <!-- MODAL CADASTRAR PROPRIEDADE -->
     <form id="forms-propriedade">
       <div class="forms-label-input-propriedade">
         <label for="nome">Nome</label>
-        <input [(ngModel)]="propriedadeASerCadastrada.name" type="text" name="nome" id="nome" required>
+        <input *ngIf="!edicaoOuCadastroPropriedade" [(ngModel)]="propriedadeASerCadastrada.name" type="text" name="nome" id="nome" required>
+        <input *ngIf="edicaoOuCadastroPropriedade" [(ngModel)]="propriedadeEmEdicao.name" type="text" name="nome" id="nome" required>
       </div>
       <div class="forms-label-input-propriedade">
         <label for="nome">Tipo de Dado</label>
@@ -57,7 +59,8 @@
           <button class="cursor-pointer" id="botao-adicionar-opcao" (click)="adicionarOpcaoSelecaoPropriedade()">+</button>
         </form>
       </div>
-      <button class="cursor-pointer" type="submit" (click)="cadastrarPropriedadeNova()">Confirmar</button>
+      <button *ngIf="!edicaoOuCadastroPropriedade" class="cursor-pointer" type="submit" (click)="cadastrarPropriedadeNova()">Confirmar</button>
+      <button *ngIf="edicaoOuCadastroPropriedade" class="cursor-pointer" type="submit" (click)="confirmarEdicaoPropriedade()">Editar</button>
     </form>
   </ng-container>
 </app-modal-cadastrar-dados>
@@ -69,11 +72,11 @@
 >
   <ng-container titulo>Propriedades</ng-container>
   <ng-container corpo>
-    <div *ngFor="let propriedade of listaPropriedades">
-      <div>
-        <h2>{{propriedade.name}}</h2>
-        <h2>Editar</h2>
-        <h2>❌</h2>
+    <div *ngFor="let propriedade of listaPropriedades; index as index" id="propriedade-edicao-lista">
+      <div class="propriedade-informacoes-edicao">
+        <p>{{propriedade.name}}</p>
+        <p class="cursor-pointer" (click)="editarPropriedadeExistente(index)">Editar</p>
+        <p class="cursor-pointer" >❌</p>
       </div>
     </div>
   </ng-container>
