@@ -71,6 +71,17 @@
 .linha-input-opcao{
     display: flex;
     flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.input-opcao-selecao-propriedade{
+    display: flex;
+    width: 60%;
+}
+#botao-adicionar-opcao{
+    display: flex;
+    width: 60%;
+    justify-content: center;
 }
 
 

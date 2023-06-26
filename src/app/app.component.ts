@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/models/users/user';
 import { UserRepository } from 'src/repositories/user.repository';
 import { TesteService } from 'src/services/teste.service';
@@ -8,7 +8,7 @@ import { TesteService } from 'src/services/teste.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'todo-list';
 
   private userId: string = 'joao.silva';
@@ -32,6 +32,10 @@ export class AppComponent {
     });
     //getter and setter
   }
+  ngOnInit(){
+  
+  }
+
   private getUsuarioLogado(): User {
     return this.users.find((user) => {
       return user.id === this.userId
