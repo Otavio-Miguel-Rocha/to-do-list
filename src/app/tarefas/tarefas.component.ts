@@ -24,7 +24,7 @@ export class TarefasComponent implements OnInit {
       const propriedadeFixa:Property = {
         id: "id_1",
         name: "Nome",
-        typeOfData: "Texto",
+        typeOfData: "String",
       }
       this.listaPropriedades.push(propriedadeFixa);
       this.setPropriedades();
@@ -152,13 +152,13 @@ export class TarefasComponent implements OnInit {
       //
       //Tipo de Dados
       if (this.tipoDadoTexto) {
-        this.propriedadeASerCadastrada.typeOfData = "Texto";
+        this.propriedadeASerCadastrada.typeOfData = "String";
         return true;
       } else if (this.tipoDadoNumero) {
-        this.propriedadeASerCadastrada.typeOfData = 0;
+        this.propriedadeASerCadastrada.typeOfData = "Number";
         return true;
       } else if (this.tipoDadoSelecao) {
-        this.propriedadeASerCadastrada.typeOfData = this.listaOpcoesSelecao;
+        this.propriedadeASerCadastrada.typeOfData = JSON.stringify(this.listaOpcoesSelecao);
         return true;
       } else {
         console.log("É necessário escolher algum paramêtro de dados");
@@ -183,16 +183,25 @@ export class TarefasComponent implements OnInit {
   propriedadeEmEdicao: Property;
   edicaoOuCadastroPropriedade: boolean = false;
   editarPropriedadeExistente(posicao:number):void{
+    this.edicaoOuCadastroPropriedade = true;
     this.propriedadeEmEdicao = this.listaPropriedades[posicao];
+    console.log(this.propriedadeEmEdicao);
+    this.atualizarTipoDadoPropriedade(this.propriedadeEmEdicao.typeOfData.toString());
+    this.modalEditarPropriedade = false;
+    this.modalCadastrarNovaPropriedade = true;
   }
   confirmarEdicaoPropriedade():void{
     if(this.validacoesCamposCadastroPropriedades(this.propriedadeEmEdicao)){
-      this.listaPropriedades.find((propriedade) => {
+      this.listaPropriedades.forEach((propriedade) => {
         if(propriedade.id == this.propriedadeEmEdicao.id){
+          console.log("entrei");
           propriedade = this.propriedadeEmEdicao;
+          console.log(propriedade);
+          console.log(this.listaPropriedades);
         }
       });
       this.setPropriedades(); 
+      this.edicaoOuCadastroPropriedade = false;
     }
   }
 

@@ -19,7 +19,8 @@
 *ngIf="modalCadastrarNovaPropriedade"
 (fecharModalAtual)="fecharModal()"
 >
-  <ng-container titulo>Adicione Uma Propriedade</ng-container>
+  <ng-container titulo *ngIf="!edicaoOuCadastroPropriedade">Adicione Uma Propriedade</ng-container>
+  <ng-container titulo *ngIf="edicaoOuCadastroPropriedade">Editar {{propriedadeEmEdicao.name}}</ng-container>
   <ng-container corpo>
     <!-- MODAL CADASTRAR PROPRIEDADE -->
     <form id="forms-propriedade">
@@ -27,7 +28,7 @@
         <label for="nome">Nome</label>
         <input *ngIf="!edicaoOuCadastroPropriedade" [(ngModel)]="propriedadeASerCadastrada.name" type="text" name="nome" id="nome" required>
         <input *ngIf="edicaoOuCadastroPropriedade" [(ngModel)]="propriedadeEmEdicao.name" type="text" name="nome" id="nome" required>
-      </div>
+      </div>        
       <div class="forms-label-input-propriedade">
         <label for="nome">Tipo de Dado</label>
         <div class="selecao-tipo-dado">
