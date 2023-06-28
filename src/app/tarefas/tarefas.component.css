@@ -42,14 +42,15 @@
 
 
 
-
-/* MODAL CADASTRAR PROPRIEDADES */
-#forms-propriedade{
+/* MODAIS-FORMS */
+.forms-geral{
     display: flex;
     flex-direction: column;
     height: 80%;
     width: 100%;
 }
+/* MODAL CADASTRAR PROPRIEDADES */
+
 .forms-label-input-propriedade{
     display: flex;
     flex-direction: column;
@@ -99,3 +100,4 @@
     width: 100%;
     justify-content: space-evenly;
 }
+
