@@ -12,7 +12,8 @@ import { User } from "src/models/users/user";
 export class TarefasComponent implements OnInit {
   usuario: User;
   listaPropriedades: Property[] = [];
-  constructor() { }
+  listaTarefas: Task[] = [];
+  constructor() {}
 
   ngOnInit() {
     let listaPropriedadeValidacoes: Property[] = JSON.parse(
@@ -25,10 +26,12 @@ export class TarefasComponent implements OnInit {
         id: "id_1",
         name: "Nome",
         typeOfData: "String",
-      }
+      };
       this.listaPropriedades.push(propriedadeFixa);
       this.setPropriedades();
     }
+    let listaTarefas: Task[] = JSON.parse(localStorage.getItem("Tarefas"));
+    //continuar recolhimento das tarefas;
   }
 
   //Funcionalidades do usuário Tarefas
@@ -109,15 +112,17 @@ export class TarefasComponent implements OnInit {
       this.tipoDadoTexto = false;
       this.tipoDadoNumero = true;
       this.tipoDadoSelecao = false;
-    } else if (((Array.isArray(tipoDado)) || (tipoDado == "Select")) && !this.tipoDadoSelecao) {
+    } else if (
+      (Array.isArray(tipoDado) || tipoDado == "Select") &&
+      !this.tipoDadoSelecao
+    ) {
       if (Array.isArray(tipoDado)) {
         this.listaOpcoesSelecao = tipoDado;
       }
       this.tipoDadoTexto = false;
       this.tipoDadoNumero = false;
       this.tipoDadoSelecao = true;
-    }
-    else {
+    } else {
       this.tipoDadoTexto = false;
       this.tipoDadoNumero = false;
       this.tipoDadoSelecao = false;
@@ -136,13 +141,15 @@ export class TarefasComponent implements OnInit {
     this.listaOpcoesSelecao.splice(this.listaOpcoesSelecao.indexOf(opcao), 1);
   }
   cadastrarPropriedadeNova(): void {
-    if (this.validacoesCamposCadastroPropriedades(this.propriedadeASerCadastrada)) {
-      this.propriedadeASerCadastrada.id = this.gerarID();
+    if (
+      this.validacoesCamposCadastroPropriedades(this.propriedadeASerCadastrada)
+    ) {
+      this.propriedadeASerCadastrada.id = this.gerarID(this.listaPropriedades);
       const novaPropriedade: Property = {
         id: this.propriedadeASerCadastrada.id,
         name: this.propriedadeASerCadastrada.name,
         typeOfData: this.propriedadeASerCadastrada.typeOfData,
-      }
+      };
       this.listaPropriedades.push(novaPropriedade);
       this.setPropriedades();
       this.propriedadeASerCadastrada.id = "";
@@ -152,7 +159,9 @@ export class TarefasComponent implements OnInit {
       this.fecharModal();
     }
   }
-  validacoesCamposCadastroPropriedades(propriedadeValidacao: Property): boolean {
+  validacoesCamposCadastroPropriedades(
+    propriedadeValidacao: Property
+  ): boolean {
     //Nome
     console.log(propriedadeValidacao);
     if (propriedadeValidacao.name == "") {
@@ -177,12 +186,12 @@ export class TarefasComponent implements OnInit {
     console.log(propriedadeValidacao);
     //
   }
-  gerarID(): string {
-    const ultimaPropriedade = this.listaPropriedades[this.listaPropriedades.length - 1];
+  gerarID(lista: Property[] | Task[]): string {
+    const ultimoElemento = lista[lista.length - 1];
     let id = 0;
-    if (ultimaPropriedade) {
+    if (ultimoElemento) {
       const limpaString = /(\d+)$/;
-      const idEncontrada = limpaString.exec(ultimaPropriedade.id);
+      const idEncontrada = limpaString.exec(ultimoElemento.id);
       if (idEncontrada) {
         id = parseInt(idEncontrada[0]);
       }
@@ -208,7 +217,7 @@ export class TarefasComponent implements OnInit {
             id: this.propriedadeEmEdicao.id,
             name: this.propriedadeEmEdicao.name,
             typeOfData: this.propriedadeEmEdicao.typeOfData,
-          }
+          };
           propriedade = propriedadeEditada;
         }
       });
@@ -217,24 +226,29 @@ export class TarefasComponent implements OnInit {
     }
   }
 
-
   //Cadastrar Tarefa
   modalCadastrarTarefa: boolean = false;
   tarefaSendoCadastrada: Task;
   abrirModalCadastrarTarefa(): void {
     this.tarefaSendoCadastrada = new Task();
+    this.tarefaSendoCadastrada.properties = this.listaPropriedades;
     this.modalCadastrarTarefa = true;
   }
   verificaArray(array: any): boolean {
     return Array.isArray(array);
   }
   cadastrarNovaTarefa(): void {
+    // const novaTarefa: Task = {
+    //   id: this.gerarID(this.listaTarefas),
+    // };
     console.log(this.tarefaSendoCadastrada.properties);
   }
 
-
   //LOCAL STORAGE (FUTURA API)
   setPropriedades(): void {
-    localStorage.setItem("Propriedades", JSON.stringify(this.listaPropriedades));
+    localStorage.setItem(
+      "Propriedades",
+      JSON.stringify(this.listaPropriedades)
+    );
   }
 }

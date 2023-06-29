@@ -1,86 +1,192 @@
 <section id="secao-tarefas">
   <div id="conteudo-principal">
     <div id="botoes-acao-cadastro">
-      <button [disabled]="!validaPermissaoPropriedade('Add')" (click)="adicionarPropriedade()"
-        class="cursor-pointer">Cadastrar Propriedade</button>
-      <button [disabled]="!validaPermissaoPropriedade('Add')" (click)="editarPropriedade()"
-        class="cursor-pointer">Editar Propriedade</button>
-      <button [disabled]="!validaPermissaoTarefa('Add')" (click)="adicionarTarefa()" class="cursor-pointer">Cadastrar
-        Tarefa</button>
+      <button
+        [disabled]="!validaPermissaoPropriedade('Add')"
+        (click)="adicionarPropriedade()"
+        class="cursor-pointer"
+      >
+        Cadastrar Propriedade
+      </button>
+      <button
+        [disabled]="!validaPermissaoPropriedade('Add')"
+        (click)="editarPropriedade()"
+        class="cursor-pointer"
+      >
+        Editar Propriedade
+      </button>
+      <button
+        [disabled]="!validaPermissaoTarefa('Add')"
+        (click)="adicionarTarefa()"
+        class="cursor-pointer"
+      >
+        Cadastrar Tarefa
+      </button>
     </div>
     <div id="conteudo-tarefas">
-
-      <button [disabled]="!validaPermissaoTarefa('Edit')" (click)="editarTarefa()"
-        class="cursor-pointer">Editar</button>
-      <button [disabled]="!validaPermissaoTarefa('Move')" (click)="moverTarefa()" class="cursor-pointer">Mover</button>
-      <button [disabled]="!validaPermissaoTarefa('Remove')" (click)="removerTarefa()"
-        class="cursor-pointer">Remover</button>
+      <button
+        [disabled]="!validaPermissaoTarefa('Edit')"
+        (click)="editarTarefa()"
+        class="cursor-pointer"
+      >
+        Editar
+      </button>
+      <button
+        [disabled]="!validaPermissaoTarefa('Move')"
+        (click)="moverTarefa()"
+        class="cursor-pointer"
+      >
+        Mover
+      </button>
+      <button
+        [disabled]="!validaPermissaoTarefa('Remove')"
+        (click)="removerTarefa()"
+        class="cursor-pointer"
+      >
+        Remover
+      </button>
     </div>
   </div>
 </section>
 
 <!-- MODAL CADASTRAR PROPRIEDADES -->
-<app-modal-cadastrar-dados *ngIf="modalCadastrarNovaPropriedade" (fecharModalAtual)="fecharModal()">
-  <ng-container titulo *ngIf="!edicaoOuCadastroTarefa">Adicione Uma Propriedade</ng-container>
-  <ng-container titulo *ngIf="edicaoOuCadastroTarefa">Editar {{propriedadeEmEdicao.name}}</ng-container>
+<app-modal-cadastrar-dados
+  *ngIf="modalCadastrarNovaPropriedade"
+  (fecharModalAtual)="fecharModal()"
+>
+  <ng-container titulo *ngIf="!edicaoOuCadastroTarefa"
+    >Adicione Uma Propriedade</ng-container
+  >
+  <ng-container titulo *ngIf="edicaoOuCadastroTarefa"
+    >Editar {{ propriedadeEmEdicao.name }}</ng-container
+  >
   <ng-container corpo>
     <!-- MODAL CADASTRAR PROPRIEDADE -->
     <form class="forms-geral">
       <div class="forms-label-input-propriedade">
         <label for="nome">Nome</label>
-        <input *ngIf="!edicaoOuCadastroPropriedade" [(ngModel)]="propriedadeASerCadastrada.name" type="text" name="nome"
-          id="nome" required>
-        <input *ngIf="edicaoOuCadastroPropriedade" [(ngModel)]="propriedadeEmEdicao.name" type="text" name="nome"
-          id="nome" required>
+        <input
+          *ngIf="!edicaoOuCadastroPropriedade"
+          [(ngModel)]="propriedadeASerCadastrada.name"
+          type="text"
+          name="nome"
+          id="nome"
+          required
+        />
+        <input
+          *ngIf="edicaoOuCadastroPropriedade"
+          [(ngModel)]="propriedadeEmEdicao.name"
+          type="text"
+          name="nome"
+          id="nome"
+          required
+        />
       </div>
       <div class="forms-label-input-propriedade">
         <label for="nome">Tipo de Dado</label>
         <div class="selecao-tipo-dado">
           <div class="forms-label-input-propriedade">
             <label for="texto">Texto</label>
-            <input (click)="atualizarTipoDadoPropriedade('String')" type="checkbox" name="texto" id="texto"
-              [checked]="tipoDadoTexto">
+            <input
+              (click)="atualizarTipoDadoPropriedade('String')"
+              type="checkbox"
+              name="texto"
+              id="texto"
+              [checked]="tipoDadoTexto"
+            />
           </div>
           <div class="forms-label-input-propriedade">
             <label for="numero">Número</label>
-            <input (click)="atualizarTipoDadoPropriedade('Number')" type="checkbox" name="numero" id="numero"
-              [checked]="tipoDadoNumero">
+            <input
+              (click)="atualizarTipoDadoPropriedade('Number')"
+              type="checkbox"
+              name="numero"
+              id="numero"
+              [checked]="tipoDadoNumero"
+            />
           </div>
           <div class="forms-label-input-propriedade">
             <label for="selecao">Seleção</label>
-            <input (click)="atualizarTipoDadoPropriedade('Select')" type="checkbox" name="selecao" id="selecao"
-              [checked]="tipoDadoSelecao">
+            <input
+              (click)="atualizarTipoDadoPropriedade('Select')"
+              type="checkbox"
+              name="selecao"
+              id="selecao"
+              [checked]="tipoDadoSelecao"
+            />
           </div>
         </div>
         <form *ngIf="tipoDadoSelecao" id="form-propriedade-selecao-itens">
           <h2>Insira as Opções</h2>
           <div *ngFor="let opcao of listaOpcoesSelecao; index as index">
-            <div class="linha-input-opcao" [style.background-color]="opcao.color">
-              <input [(ngModel)]="opcao.name" class="input-opcao-selecao-propriedade" name="opcao{{index}}" required>
-              <input [(ngModel)]="opcao.color" type="color" name="opcao.color">
-              <p class="cursor-pointer" (click)="removerOpcaoSelecaoPropriedade(opcao)">❌</p>
+            <div
+              class="linha-input-opcao"
+              [style.background-color]="opcao.color"
+            >
+              <input
+                [(ngModel)]="opcao.name"
+                class="input-opcao-selecao-propriedade"
+                name="opcao{{ index }}"
+                required
+              />
+              <input
+                [(ngModel)]="opcao.color"
+                type="color"
+                name="opcao.color"
+              />
+              <p
+                class="cursor-pointer"
+                (click)="removerOpcaoSelecaoPropriedade(opcao)"
+              >
+                ❌
+              </p>
             </div>
           </div>
-          <button class="cursor-pointer" id="botao-adicionar-opcao"
-            (click)="adicionarOpcaoSelecaoPropriedade()">+</button>
+          <button
+            class="cursor-pointer"
+            id="botao-adicionar-opcao"
+            (click)="adicionarOpcaoSelecaoPropriedade()"
+          >
+            +
+          </button>
         </form>
       </div>
-      <button *ngIf="!edicaoOuCadastroPropriedade" class="cursor-pointer" type="submit"
-        (click)="cadastrarPropriedadeNova()">Confirmar</button>
-      <button *ngIf="edicaoOuCadastroPropriedade" class="cursor-pointer" type="submit"
-        (click)="confirmarEdicaoPropriedade()">Editar</button>
+      <button
+        *ngIf="!edicaoOuCadastroPropriedade"
+        class="cursor-pointer"
+        type="submit"
+        (click)="cadastrarPropriedadeNova()"
+      >
+        Confirmar
+      </button>
+      <button
+        *ngIf="edicaoOuCadastroPropriedade"
+        class="cursor-pointer"
+        type="submit"
+        (click)="confirmarEdicaoPropriedade()"
+      >
+        Editar
+      </button>
     </form>
   </ng-container>
 </app-modal-cadastrar-dados>
 <!--  -->
 <!-- MODAL EDITAR PROPRIEDADE -->
-<app-modal-cadastrar-dados *ngIf="modalEditarPropriedade" (fecharModalAtual)="fecharModal()">
+<app-modal-cadastrar-dados
+  *ngIf="modalEditarPropriedade"
+  (fecharModalAtual)="fecharModal()"
+>
   <ng-container titulo>Propriedades</ng-container>
   <ng-container corpo>
-    <div *ngFor="let propriedade of listaPropriedades; index as index" id="propriedade-edicao-lista">
+    <div
+      *ngFor="let propriedade of listaPropriedades; index as index"
+      id="propriedade-edicao-lista"
+    >
       <div class="propriedade-informacoes-edicao">
-        <p>{{propriedade.name}}</p>
-        <p class="cursor-pointer" (click)="editarPropriedadeExistente(index)">Editar</p>
+        <p>{{ propriedade.name }}</p>
+        <p class="cursor-pointer" (click)="editarPropriedadeExistente(index)">
+          Editar
+        </p>
         <p class="cursor-pointer">❌</p>
       </div>
     </div>
@@ -88,22 +194,52 @@
 </app-modal-cadastrar-dados>
 
 <!-- MODAL CADASTRAR TAREFA -->
-<app-modal-cadastrar-dados *ngIf="modalCadastrarTarefa" (fecharModalAtual)="fecharModal()">
+<app-modal-cadastrar-dados
+  *ngIf="modalCadastrarTarefa"
+  (fecharModalAtual)="fecharModal()"
+>
   <ng-container titulo>Nova Tarefa</ng-container>
   <ng-container corpo>
     <!-- MODAL CADASTRAR PROPRIEDADE -->
     <form class="forms-geral">
       <div class="forms-label-input-propriedade">
-        <div *ngFor="let propriedade of listaPropriedades">
-          <h3>{{propriedade.name}}</h3>
-          <input name="propriedade" *ngIf="propriedade.typeOfData === 'String'" type="text">
-          <input name="propriedade" *ngIf="propriedade.typeOfData === 'Number'" type="number">
-          <select name="propriedade" *ngIf="verificaArray(propriedade.typeOfData)">
-            <option *ngFor="let opcoes of propriedade.typeOfData">{{opcoes.name}}</option>
+        <div
+          *ngFor="
+            let propriedade of tarefaSendoCadastrada.properties;
+            index as index
+          "
+        >
+          <h3>{{ propriedade.name }}</h3>
+          <input
+            [(ngModel)]="tarefaSendoCadastrada.properties[index].value"
+            name="propriedade"
+            *ngIf="propriedade.typeOfData === 'String'"
+            type="text"
+          />
+          <input
+            [(ngModel)]="tarefaSendoCadastrada.properties[index].value"
+            name="propriedade"
+            *ngIf="propriedade.typeOfData === 'Number'"
+            type="number"
+          />
+          <select
+            [(ngModel)]="tarefaSendoCadastrada.properties[index].value"
+            name="propriedade"
+            *ngIf="verificaArray(propriedade.typeOfData)"
+          >
+            <option *ngFor="let opcoes of propriedade.typeOfData">
+              {{ opcoes.name }}
+            </option>
           </select>
         </div>
       </div>
-      <button class="cursor-pointer" type="submit"(click)="cadastrarNovaTarefa()">Confirmar</button>
+      <button
+        class="cursor-pointer"
+        type="submit"
+        (click)="cadastrarNovaTarefa()"
+      >
+        Confirmar
+      </button>
     </form>
   </ng-container>
 </app-modal-cadastrar-dados>
