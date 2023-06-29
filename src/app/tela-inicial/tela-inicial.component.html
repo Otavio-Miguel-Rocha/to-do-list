@@ -7,14 +7,14 @@
             </div>
             <div class="formulario-label-input">
                 <label for="id">ID</label>
-                <input type="text" name="id" class="login-input">
+                <input [(ngModel)]="user.id" type="text" class="login-input">
             </div>
             <div class="formulario-label-input">
                 <label for="senha">Senha</label>
-                <input type="text" name="senha" class="login-input">
+                <input [(ngModel)]="user.password" type="text" class="login-input">
             </div>
             <div class="formulario-botao">
-                <button type="submit" class="botao-login">Entrar</button>
+                <button (click)="requestUsuario()" type="submit" class="botao-login">Entrar</button>
             </div>
         </form>
     </div>

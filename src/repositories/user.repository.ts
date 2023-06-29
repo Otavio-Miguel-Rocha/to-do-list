@@ -20,4 +20,8 @@ export class UserRepository {
       })
     );
   }
+  public getUser(id: string, password: string): Observable<User> {
+    const loginData = { id, password };
+    return this.httpClient.post<User>(`${API_URL}`, loginData);
+  }
 }

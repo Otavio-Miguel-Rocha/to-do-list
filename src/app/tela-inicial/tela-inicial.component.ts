@@ -9,6 +9,15 @@ import { UserRepository } from "src/repositories/user.repository";
 })
 export class TelaInicialComponent implements OnInit {
   users: User[];
+  user: User = {
+    id: "",
+    name: "",
+    password: "",
+    email: "",
+    groups: [],
+    cardPermissions: [],
+    propertiesPermissions: [],
+  };
   constructor(private userRepository: UserRepository) {
     userRepository.getUsers().subscribe({
       next: (value) => {
@@ -19,4 +28,17 @@ export class TelaInicialComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  requestUsuario(): void{
+    this.userRepository.getUser(this.user.id, this.user.password).subscribe(
+      (user) => {
+        // User login successful, do something
+        console.log(user);
+      },
+      (error) => {
+        // User login failed, handle error
+        console.error(error);
+      }
+    );
+  }
 }

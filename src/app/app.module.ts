@@ -10,10 +10,11 @@ import { TarefasModule } from "./tarefas/tarefas.module";
 import { HttpClientModule } from "@angular/common/http";
 // import { AuthGuardService } from 'src/services/auth-guard.service';
 import { TesteService } from "src/services/teste.service";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [AppComponent, TelaInicialComponent, NavegacaoComponent],
-  imports: [BrowserModule, AppRountingModule, TarefasModule, HttpClientModule],
+  imports: [BrowserModule, AppRountingModule, TarefasModule, FormsModule, HttpClientModule],
   providers: [
     UserRepository,
     // AuthGuardService,
