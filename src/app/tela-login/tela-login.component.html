@@ -7,11 +7,11 @@
             </div>
             <div class="formulario-label-input">
                 <label for="id">ID</label>
-                <input [(ngModel)]="user.id" type="text" class="login-input">
+                <input [(ngModel)]="user.id" name="id" type="text" class="login-input">
             </div>
             <div class="formulario-label-input">
                 <label for="senha">Senha</label>
-                <input [(ngModel)]="user.password" type="text" class="login-input">
+                <input [(ngModel)]="user.password"name="password" type="password" class="login-input">
             </div>
             <div class="formulario-botao">
                 <button (click)="requestUsuario()" type="submit" class="botao-login">Entrar</button>
@@ -19,6 +19,4 @@
         </form>
     </div>
     <!--  -->
-
-    <!-- REGISTER -->
 </section>

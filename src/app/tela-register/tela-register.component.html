@@ -1,0 +1,29 @@
+<section id="secao-tela-inicial">
+  <!-- REGISTER -->
+  <div id="div-container-formulario-register">
+    <form id="formulario-login">
+      <div id="formulario-titulo-login">
+        <h2>Faça seu Cadastro</h2>
+      </div>
+      <div class="formulario-label-input">
+        <label for="id">Insira seu id</label>
+        <input [(ngModel)]="user.id" name="id" type="text" class="login-input">
+      </div>
+      <div class="formulario-label-input">
+        <label for="nome">Nome</label>
+        <input [(ngModel)]="user.name" name="name" type="text" class="login-input">
+      </div>
+      <div class="formulario-label-input">
+        <label for="email">E-mail</label>
+        <input [(ngModel)]="user.email" name="email" type="email" class="login-input">
+      </div>
+      <div class="formulario-label-input">
+        <label for="senha">Senha</label>
+        <input [(ngModel)]="user.password" name="senha" type="password" class="login-input">
+      </div>
+      <div class="formulario-botao">
+        <button (click)="postUsuario()" type="submit" class="botao-login">Entrar</button>
+      </div>
+    </form>
+  </div>
+</section>

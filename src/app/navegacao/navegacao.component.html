@@ -1,7 +1,23 @@
 <nav class="navegacao">
   <ul id="itens-navegacao">
-    <a class="item-navegacao"><li>Logo</li></a>
-    <a class="item-navegacao"><li>Login</li></a>
-    <a class="item-navegacao"><li>Register</li></a>
+    <a class="item-navegacao">
+      <li>Logo</li>
+    </a>
+    <div class="flex-direction-row" *ngIf="!menuInicial">
+      <a class="item-navegacao">
+        <li>Grupos</li>
+      </a>
+      <a class="item-navegacao">
+        <li>Tarefas</li>
+      </a>
+    </div>
+    <div class="flex-direction-row" *ngIf="menuInicial">
+      <a class="item-navegacao" routerLink="/Login">
+        <li>Login</li>
+      </a>
+      <a class="item-navegacao" routerLink="/Cadastro">
+        <li>Register</li>
+      </a>
+    </div>
   </ul>
 </nav>

@@ -2,12 +2,17 @@ import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
 // import { AuthGuardService } from "src/services/auth-guard.service";
 import { TarefasComponent } from "./tarefas/tarefas.component";
-import { TelaInicialComponent } from "./tela-inicial/tela-inicial.component";
+import { TelaLoginComponent } from "./tela-login/tela-login.component";
+import { TelaRegisterComponent } from "./tela-register/tela-register.component";
 
 const routes: Route[] = [
   {
-    path: "Menu-Inicial",
-    component: TelaInicialComponent,
+    path: "Login",
+    component: TelaLoginComponent,
+  },
+  {
+    path: "Cadastro",
+    component: TelaRegisterComponent,
   },
   {
     path: "Tarefas",
@@ -17,7 +22,7 @@ const routes: Route[] = [
   {
     path: "",
     pathMatch: "full",
-    redirectTo: "Menu-Inicial",
+    redirectTo: "Login",
   }, //rota padrão
 ];
 

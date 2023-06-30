@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { User } from "src/models/users/user";
 import { UserRepository } from "src/repositories/user.repository";
 
 @Component({
-  selector: "app-tela-inicial",
-  templateUrl: "./tela-inicial.component.html",
-  styleUrls: ["./tela-inicial.component.css"],
+  selector: "app-tela-login",
+  templateUrl: "./tela-login.component.html",
+  styleUrls: ["./tela-login.component.css"],
 })
-export class TelaInicialComponent implements OnInit {
+export class TelaLoginComponent implements OnInit {
   users: User[];
   user: User = {
     id: "",
@@ -18,22 +19,27 @@ export class TelaInicialComponent implements OnInit {
     cardPermissions: [],
     propertiesPermissions: [],
   };
-  constructor(private userRepository: UserRepository) {
-    userRepository.getUsers().subscribe({
-      next: (value) => {
-        this.users = value;
-        console.log(this.users);
-      },
-    });
+  constructor(
+    private router:Router,
+    private userRepository: UserRepository
+    ) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    let user:User = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if(user != null){
+      this.router.navigate(['/Tarefas']);
+    }
+
+  }
 
   requestUsuario(): void{
     this.userRepository.getUser(this.user.id, this.user.password).subscribe(
       (user) => {
         // User login successful, do something
         console.log(user);
+        localStorage.setItem("usuarioLogado", JSON.stringify(user));
+        this.router.navigate(['/Tarefas']);
       },
       (error) => {
         // User login failed, handle error

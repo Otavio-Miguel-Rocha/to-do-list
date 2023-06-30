@@ -11,3 +11,7 @@ input:focus {
 .cursor-pointer{
     cursor: pointer;
 }
+.flex-direction-row{
+    display: flex;
+    flex-direction: row;
+}

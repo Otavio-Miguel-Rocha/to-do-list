@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Option } from "src/models/properties/options/options";
 import { Property } from "src/models/properties/properties";
 import { Task } from "src/models/tasks/taks";
@@ -13,9 +14,17 @@ export class TarefasComponent implements OnInit {
   usuario: User;
   listaPropriedades: Property[] = [];
   listaTarefas: Task[] = [];
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    let user : User = JSON.parse(localStorage.getItem("usuarioLogado"));
+    if(user == null){
+      this.router.navigate(['/Login'])
+    }
+
+
     let listaPropriedadeValidacoes: Property[] = JSON.parse(
       localStorage.getItem("Propriedades")
     );
