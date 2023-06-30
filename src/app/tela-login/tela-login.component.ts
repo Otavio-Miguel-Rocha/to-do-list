@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "src/models/users/user";
 import { UserRepository } from "src/repositories/user.repository";
+import { UserService } from "src/services/user.service";
 
 @Component({
   selector: "app-tela-login",
@@ -21,7 +22,8 @@ export class TelaLoginComponent implements OnInit {
   };
   constructor(
     private router:Router,
-    private userRepository: UserRepository
+    private userRepository: UserRepository,
+    private userService: UserService
     ) {
   }
 
@@ -38,7 +40,7 @@ export class TelaLoginComponent implements OnInit {
       (user) => {
         // User login successful, do something
         console.log(user);
-        localStorage.setItem("usuarioLogado", JSON.stringify(user));
+        // this.userService.setLoggedUser(user);
         this.router.navigate(['/Tarefas']);
       },
       (error) => {
