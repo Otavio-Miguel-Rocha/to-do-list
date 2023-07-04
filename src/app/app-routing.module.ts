@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
-// import { AuthGuardService } from "src/services/auth-guard.service";
 import { TarefasComponent } from "./tarefas/tarefas.component";
 import { TelaLoginComponent } from "./tela-login/tela-login.component";
 import { TelaRegisterComponent } from "./tela-register/tela-register.component";
+import { AuthGuardService } from "src/services/auth-guard.service";
 
 const routes: Route[] = [
   {
@@ -17,7 +17,7 @@ const routes: Route[] = [
   {
     path: "Tarefas",
     component: TarefasComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
   {
     path: "",

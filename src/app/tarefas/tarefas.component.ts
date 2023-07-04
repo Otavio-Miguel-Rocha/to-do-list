@@ -21,9 +21,6 @@ export class TarefasComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if(this.userService.getLoggedUser == null){
-      this.router.navigate(['/Login'])
-    }
     
 
     let listaPropriedadeValidacoes: Property[] = JSON.parse(
@@ -109,7 +106,6 @@ export class TarefasComponent implements OnInit {
     this.modalManipularTarefa = false;
     this.modalManipularTarefaEdicao= false;
     this.modalManipularTarefaCadastro = false;
-    this.propriedadeASerCadastrada = null;
     this.tarefaSendoManipulada = null;
   }
   //Funções Modais
@@ -239,9 +235,9 @@ export class TarefasComponent implements OnInit {
             typeOfData: this.propriedadeEmEdicao.typeOfData,
           };
           propriedade = propriedadeEditada;
+          this.setPropriedades();
         }
       });
-      this.setPropriedades();
       this.fecharModal();
     }
   }
@@ -273,8 +269,6 @@ export class TarefasComponent implements OnInit {
     };
     this.listaTarefas.push(novaTarefa);
     this.setTarefas();
-    console.log(novaTarefa);
-    console.log(this.listaTarefas);
   }
   adicionaTarefa():void{
     const novaTarefa: Task = {
@@ -303,6 +297,17 @@ export class TarefasComponent implements OnInit {
     console.log(tarefa);
   }
 
+  atualizarPropriedadesTarefas():void{
+    console.log(this.listaTarefas);
+    this.listaTarefas.forEach( (tarefa) =>{
+      tarefa.properties.forEach( (propriedade) => {
+        const value:String = propriedade.value;
+        tarefa.properties = this.listaPropriedades;
+      })
+    });
+    console.log(this.listaTarefas);
+  }
+
 
 
 
@@ -329,7 +334,7 @@ export class TarefasComponent implements OnInit {
 
   //LOCAL STORAGE (FUTURA API)
   setPropriedades(): void {
-    
+    this.atualizarPropriedadesTarefas();
     localStorage.setItem(
       "Propriedades",
       JSON.stringify(this.listaPropriedades)

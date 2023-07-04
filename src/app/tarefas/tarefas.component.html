@@ -23,7 +23,7 @@
               ❌
             </a>
           </div>
-          <div *ngFor="let propriedades of tarefa.properties" class="conteudo-tarefas">
+          <!-- <div *ngFor="let propriedades of tarefa.properties" class="conteudo-tarefas">
             <div class="propriedades-tarefa flex-direction-column">
               <label>{{propriedades.name}}</label>
               <input (change)="mudou(tarefa)" [(ngModel)]="propriedades.value"
@@ -36,6 +36,22 @@
                 [name]="'propriedade-' + tarefa.id + '-' + propriedades.id"
                 *ngIf="verificaArray(propriedades.typeOfData)">
                 <option *ngFor="let opcoes of propriedades.typeOfData">{{ opcoes.name }}</option>
+              </select>
+            </div>
+          </div> -->
+          <div *ngFor="let propriedades of tarefa.properties" class="conteudo-tarefas">
+            <div class="propriedades-tarefa flex-direction-column">
+              <label>{{ propriedades.name }}</label>
+              <input (change)="mudou(tarefa)" [(ngModel)]="propriedades.propertyValue"
+                [name]="'propriedade-' + tarefa.id + '-' + propriedades.id" *ngIf="propriedades.typeOfData === 'String'"
+                type="text" />
+              <input (change)="mudou(tarefa)" [(ngModel)]="propriedades.propertyValue"
+                [name]="'propriedade-' + tarefa.id + '-' + propriedades.id" *ngIf="propriedades.typeOfData === 'Number'"
+                type="number" />
+              <select (change)="mudou(tarefa)" [(ngModel)]="propriedades.propertyValue"
+                [name]="'propriedade-' + tarefa.id + '-' + propriedades.id"
+                *ngIf="verificaArray(propriedades.typeOfData)">
+                <option *ngFor="let opcoes of propriedades.typeOfData" [value]="opcoes">{{ opcoes.name }}</option>
               </select>
             </div>
           </div>
