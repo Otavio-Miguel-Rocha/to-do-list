@@ -7,6 +7,7 @@
 #conteudo-principal{
     display: flex;
     width: 95%;
+    height: 100%;
     flex-direction: column;
 }
 #botoes-acao-cadastro{
@@ -15,19 +16,46 @@
     width: 100%;
     justify-content: end;
 }
-#conteudo-tarefas{
+#secao-tarefas{
   display: flex;
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: auto;
-  height: 100%;
-  justify-content: baseline;
-  flex-direction: row;
+  height: 80%;
+  justify-content: start;
   column-gap: 2%;
   row-gap: 2%;
 }
-
+.espaco-tarefas-vertical{
+    display: flex;
+    width: 30%;
+    height: 100%;
+    margin-left: 5%;
+    background-color: rgb(180, 179, 179);
+    align-items: center;
+}
+.conteudo-tarefas{
+    margin-top: 3%;
+    display: flex;
+    width: 90%;
+    height: 40%;
+    min-height: 65px;
+    margin-bottom: 3%;
+    justify-content: center;
+    background-color: white;
+    border-radius: 2%;
+}
+.propriedades-tarefa{
+    display: flex;
+    width: 80%;
+    height: 100%;
+}
+.botoes-tarefas{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
 
 
 

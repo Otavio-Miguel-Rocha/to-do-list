@@ -3,16 +3,11 @@ import { User } from "src/models/users/user";
 
 @Injectable()
 export class UserService {
-    loggedUser:User;
-
-    
-    public set setLoggedUser(user:User) {
-        this.loggedUser = user;
+    constructor() {}
+    setLoggedUser(user:User) {
+        localStorage.setItem("UsuarioLogado", JSON.stringify(user));
     }
-    
-    public get getLoggedUser() : User {
-        return this.loggedUser;
+    getLoggedUser() : User {
+        return JSON.parse(localStorage.getItem("UsuarioLogado"));
     }
-    
-
 }

@@ -4,6 +4,7 @@ import { Option } from "src/models/properties/options/options";
 import { Property } from "src/models/properties/properties";
 import { Task } from "src/models/tasks/taks";
 import { User } from "src/models/users/user";
+import { UserService } from "src/services/user.service";
 
 @Component({
   selector: "app-tarefas",
@@ -15,15 +16,15 @@ export class TarefasComponent implements OnInit {
   listaPropriedades: Property[] = [];
   listaTarefas: Task[] = [];
   constructor(
-    private router: Router
+    private router: Router,
+    private userService:UserService
   ) {}
 
   ngOnInit() {
-    let user : User = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if(user == null){
+    if(this.userService.getLoggedUser == null){
       this.router.navigate(['/Login'])
     }
-
+    
 
     let listaPropriedadeValidacoes: Property[] = JSON.parse(
       localStorage.getItem("Propriedades")
@@ -40,14 +41,17 @@ export class TarefasComponent implements OnInit {
       this.setPropriedades();
     }
     let listaTarefas: Task[] = JSON.parse(localStorage.getItem("Tarefas"));
+    if(listaTarefas != null){
+      this.listaTarefas = listaTarefas;
+    }
     //continuar recolhimento das tarefas;
   }
 
   //Funcionalidades do usuário Tarefas
   adicionarTarefa(): void {
     if (this.validaPermissaoTarefa("Add")) {
-      this.abrirModalCadastrarTarefa();
-      console.log("Pode Mover");
+      this.abrirModalManipulaTarefa(null);
+      console.log("Pode Adicionar");
     }
   }
   editarTarefa(): void {
@@ -100,9 +104,13 @@ export class TarefasComponent implements OnInit {
   fecharModal(): void {
     this.modalCadastrarNovaPropriedade = false;
     this.modalEditarPropriedade = false;
-    this.modalCadastrarTarefa = false;
     this.edicaoOuCadastroPropriedade = false;
     this.listaOpcoesSelecao = [];
+    this.modalManipularTarefa = false;
+    this.modalManipularTarefaEdicao= false;
+    this.modalManipularTarefaCadastro = false;
+    this.propriedadeASerCadastrada = null;
+    this.tarefaSendoManipulada = null;
   }
   //Funções Modais
 
@@ -148,6 +156,9 @@ export class TarefasComponent implements OnInit {
   }
   removerOpcaoSelecaoPropriedade(opcao: Option): void {
     this.listaOpcoesSelecao.splice(this.listaOpcoesSelecao.indexOf(opcao), 1);
+    this.listaTarefas.forEach( (tarefa) => {
+      tarefa.properties
+    } )
   }
   cadastrarPropriedadeNova(): void {
     if (
@@ -235,29 +246,99 @@ export class TarefasComponent implements OnInit {
     }
   }
 
-  //Cadastrar Tarefa
-  modalCadastrarTarefa: boolean = false;
-  tarefaSendoCadastrada: Task;
-  abrirModalCadastrarTarefa(): void {
-    this.tarefaSendoCadastrada = new Task();
-    this.tarefaSendoCadastrada.properties = this.listaPropriedades;
-    this.modalCadastrarTarefa = true;
+  //Manipular Tarefa
+  modalManipularTarefa: boolean = false;
+  modalManipularTarefaEdicao:boolean = false;
+  modalManipularTarefaCadastro:boolean = false;
+  tarefaSendoManipulada: Task;
+  abrirModalManipulaTarefa(tarefa:Task): void {
+    if(tarefa != null){
+      this.tarefaSendoManipulada = tarefa;
+      this.modalManipularTarefaEdicao = true;
+      console.log(this.tarefaSendoManipulada.properties);
+    } else{
+      this.tarefaSendoManipulada = new Task();
+      this.modalManipularTarefaCadastro = true;
+      this.tarefaSendoManipulada.properties = this.listaPropriedades;
+    }
+    this.modalManipularTarefa = true;
   }
   verificaArray(array: any): boolean {
     return Array.isArray(array);
   }
   cadastrarNovaTarefa(): void {
-    // const novaTarefa: Task = {
-    //   id: this.gerarID(this.listaTarefas),
-    // };
-    console.log(this.tarefaSendoCadastrada.properties);
+    const novaTarefa: Task = {
+      id: this.gerarID(this.listaTarefas),
+      properties: this.tarefaSendoManipulada.properties,
+    };
+    this.listaTarefas.push(novaTarefa);
+    this.setTarefas();
+    console.log(novaTarefa);
+    console.log(this.listaTarefas);
   }
+  adicionaTarefa():void{
+    const novaTarefa: Task = {
+      id: this.gerarID(this.listaTarefas),
+      properties: this.listaPropriedades
+    };
+    this.listaTarefas.push(novaTarefa);
+    console.log(novaTarefa.properties);
+    this.fecharModal();
+    this.setTarefas();
+  }
+  editarTarefaRegistrada(tarefa:Task):void{
+    this.abrirModalManipulaTarefa(tarefa);
+  }
+  confirmarEdicaoTarefa():void{
+    this.setTarefas();
+    this.fecharModal();
+  }
+  excluirTarefaRegistrada(tarefa:Task):void{
+    this.listaTarefas.splice(this.listaTarefas.indexOf(tarefa),1);
+    this.setTarefas();
+  }
+  mudou(tarefa:Task):void{
+    //futura aplicação da API
+    this.setTarefas();
+    console.log(tarefa);
+  }
+
+
+
+
+
+  //DRAG AND DROP
+  tarefaDrag:Task;
+  indiceDrag:number;
+  drag(tarefa: Task): void {
+    this.tarefaDrag = tarefa;
+  }
+
+  getIndice(index: number, event: Event): void {
+    event.preventDefault();
+    this.indiceDrag = index;
+    console.log(this.indiceDrag);
+  }
+  drop(event: Event) {
+    event.preventDefault();
+    this.listaTarefas.splice(this.listaTarefas.indexOf(this.tarefaDrag), 1);
+    this.listaTarefas.splice(this.indiceDrag, 0, this.tarefaDrag);
+  }
+
+
 
   //LOCAL STORAGE (FUTURA API)
   setPropriedades(): void {
+    
     localStorage.setItem(
       "Propriedades",
       JSON.stringify(this.listaPropriedades)
+    );
+  }
+  setTarefas(): void{
+    localStorage.setItem(
+      "Tarefas",
+      JSON.stringify(this.listaTarefas)
     );
   }
 }

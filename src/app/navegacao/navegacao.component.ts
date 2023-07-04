@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/models/users/user';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-navegacao',
@@ -10,16 +11,5 @@ export class NavegacaoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    let user: User = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if(user != null){
-      this.menuInicial = false;
-    } else{
-      this.menuInicial = true;
-    }
-
-  }
-
-  //Opções Logado e Deslogado
-  menuInicial:boolean;
+  ngOnInit() {}
 }

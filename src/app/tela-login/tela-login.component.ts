@@ -28,10 +28,6 @@ export class TelaLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    let user:User = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if(user != null){
-      this.router.navigate(['/Tarefas']);
-    }
 
   }
 
@@ -40,7 +36,7 @@ export class TelaLoginComponent implements OnInit {
       (user) => {
         // User login successful, do something
         console.log(user);
-        // this.userService.setLoggedUser(user);
+        this.userService.setLoggedUser(user);
         this.router.navigate(['/Tarefas']);
       },
       (error) => {
