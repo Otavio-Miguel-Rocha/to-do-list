@@ -268,12 +268,13 @@ export class TarefasComponent implements OnInit {
       properties: this.tarefaSendoManipulada.properties,
     };
     this.listaTarefas.push(novaTarefa);
+    this.fecharModal();
     this.setTarefas();
   }
   adicionaTarefa():void{
     const novaTarefa: Task = {
       id: this.gerarID(this.listaTarefas),
-      properties: this.listaPropriedades
+      properties: this.getPropriedades()
     };
     this.listaTarefas.push(novaTarefa);
     console.log(novaTarefa.properties);
@@ -297,16 +298,16 @@ export class TarefasComponent implements OnInit {
     console.log(tarefa);
   }
 
-  atualizarPropriedadesTarefas():void{
-    console.log(this.listaTarefas);
-    this.listaTarefas.forEach( (tarefa) =>{
-      tarefa.properties.forEach( (propriedade) => {
-        const value:String = propriedade.value;
-        tarefa.properties = this.listaPropriedades;
-      })
-    });
-    console.log(this.listaTarefas);
-  }
+  // atualizarPropriedadesTarefas():void{
+  //   console.log(this.listaTarefas);
+  //   this.listaTarefas.forEach( (tarefa) =>{
+  //     tarefa.properties.forEach( (propriedade) => {
+  //       const value:String = propriedade.value;
+  //       tarefa.properties = this.listaPropriedades;
+  //     })
+  //   });
+  //   console.log(this.listaTarefas);
+  // }
 
 
 
@@ -328,17 +329,20 @@ export class TarefasComponent implements OnInit {
     event.preventDefault();
     this.listaTarefas.splice(this.listaTarefas.indexOf(this.tarefaDrag), 1);
     this.listaTarefas.splice(this.indiceDrag, 0, this.tarefaDrag);
+    this.setTarefas();
   }
 
 
 
   //LOCAL STORAGE (FUTURA API)
   setPropriedades(): void {
-    this.atualizarPropriedadesTarefas();
     localStorage.setItem(
       "Propriedades",
       JSON.stringify(this.listaPropriedades)
     );
+  }
+  getPropriedades():Property[]{
+    return JSON.parse(localStorage.getItem("Propriedades"));
   }
   setTarefas(): void{
     localStorage.setItem(

@@ -15,5 +15,4 @@ export class AuthGuardService implements CanActivate {
           return false;
         }
       }
-      //https://consolelog.com.br/como-proteger-rotas-angular-com-guard/
 }

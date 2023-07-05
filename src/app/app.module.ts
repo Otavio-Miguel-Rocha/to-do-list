@@ -8,7 +8,7 @@ import { NavegacaoComponent } from "./navegacao/navegacao.component";
 import { AppRountingModule } from "./app-routing.module";
 import { TarefasModule } from "./tarefas/tarefas.module";
 import { HttpClientModule } from "@angular/common/http";
-// import { AuthGuardService } from 'src/services/auth-guard.service';
+import { AuthGuardService } from 'src/services/auth-guard.service';
 import { FormsModule } from "@angular/forms";
 import { TelaRegisterComponent } from './tela-register/tela-register.component';
 import { UserService } from "src/services/user.service";
@@ -18,7 +18,7 @@ import { UserService } from "src/services/user.service";
   imports: [BrowserModule, AppRountingModule, TarefasModule, FormsModule, HttpClientModule],
   providers: [
     UserRepository,
-    // AuthGuardService,
+    AuthGuardService,
     UserService
   ],
   bootstrap: [AppComponent],
