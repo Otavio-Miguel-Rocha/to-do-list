@@ -309,10 +309,6 @@ export class TarefasComponent implements OnInit {
   //   console.log(this.listaTarefas);
   // }
 
-
-
-
-
   //DRAG AND DROP
   tarefaDrag:Task;
   indiceDrag:number;
