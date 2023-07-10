@@ -8,8 +8,13 @@ import { UserService } from 'src/services/user.service';
   styleUrls: ['./navegacao.component.css']
 })
 export class NavegacaoComponent implements OnInit {
+  menuInicial: boolean;
 
-  constructor() { }
+  constructor(private userService: UserService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.menuInicial$.subscribe((value) => {
+      this.menuInicial = value;
+    });
+  }
 }

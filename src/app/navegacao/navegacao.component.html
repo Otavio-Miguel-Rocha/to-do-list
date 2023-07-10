@@ -3,7 +3,7 @@
     <a class="item-navegacao">
       <li>Logo</li>
     </a>
-    <div class="flex-direction-row" *ngIf="!menuInicial">
+    <div class="flex-direction-row div-lista-itens-navegacao" *ngIf="!menuInicial">
       <a class="item-navegacao">
         <li>Grupos</li>
       </a>
@@ -11,7 +11,7 @@
         <li>Tarefas</li>
       </a>
     </div>
-    <div class="flex-direction-row" *ngIf="menuInicial">
+    <div class="flex-direction-row div-lista-itens-navegacao" *ngIf="menuInicial">
       <a class="item-navegacao" routerLink="/Login">
         <li>Login</li>
       </a>

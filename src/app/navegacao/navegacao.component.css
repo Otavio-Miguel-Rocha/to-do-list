@@ -15,3 +15,8 @@
     list-style-type: none;
     font-size: 24px;
 }
+.div-lista-itens-navegacao{
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+}
