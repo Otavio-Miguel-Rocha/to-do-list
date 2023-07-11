@@ -16,6 +16,13 @@ export class UserService {
       }
       return null;
     }
+    checkLoggedUser():boolean{
+      if(this.getLoggedUser() != null){
+        return true;
+      } else{
+        return false;
+      }
+    }
   
     private getCookieValue(name: string): string | null {
       const cookies = document.cookie.split(";").map(cookie => cookie.trim());

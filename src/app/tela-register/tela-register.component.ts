@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/models/users/user';
 import { UserRepository } from 'src/repositories/user.repository';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-tela-register',
@@ -16,10 +18,15 @@ export class TelaRegisterComponent implements OnInit {
     email: "",
   };
   constructor(
-    private userRepository: UserRepository
+    private userRepository: UserRepository,
+    private userService: UserService,
+    private router:Router,
   ) { }
 
   ngOnInit() {
+    if(this.userService.getLoggedUser() != null){
+      this.router.navigate(['/Tarefas']);
+    }
   }
 
 

@@ -1,6 +1,7 @@
-import { Property } from "../properties/properties";
+
+import { Tasks_Properties } from "../tasks_properties/tasks_properties";
 
 export class Task {
     id: string = '';
-	properties: Property[];
+	properties: Tasks_Properties[];
 }

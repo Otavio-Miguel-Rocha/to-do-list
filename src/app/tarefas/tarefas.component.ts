@@ -3,7 +3,9 @@ import { Router } from "@angular/router";
 import { Option } from "src/models/properties/options/options";
 import { Property } from "src/models/properties/properties";
 import { Task } from "src/models/tasks/taks";
+import { Tasks_Properties } from "src/models/tasks_properties/tasks_properties";
 import { User } from "src/models/users/user";
+import { TaskRepository } from "src/repositories/task.repository";
 import { UserService } from "src/services/user.service";
 
 @Component({
@@ -15,13 +17,15 @@ export class TarefasComponent implements OnInit {
   usuario: User;
   listaPropriedades: Property[] = [];
   listaTarefas: Task[] = [];
+  listaTarefasPropriedades: Tasks_Properties[] = [];
   constructor(
     private router: Router,
-    private userService:UserService
+    private userService:UserService,
+    private taskRepository: TaskRepository
   ) {}
 
   ngOnInit() {
-    
+
 
     let listaPropriedadeValidacoes: Property[] = JSON.parse(
       localStorage.getItem("Propriedades")
@@ -42,6 +46,17 @@ export class TarefasComponent implements OnInit {
       this.listaTarefas = listaTarefas;
     }
     //continuar recolhimento das tarefas;
+    this.taskRepository.getTasks().subscribe(
+      (value) => {
+        console.log(value);
+        this.listaTarefas = value;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    this.setarPropriedadesProjeto("id_7");
   }
 
   //Funcionalidades do usuário Tarefas
@@ -202,7 +217,7 @@ export class TarefasComponent implements OnInit {
     console.log(propriedadeValidacao);
     //
   }
-  gerarID(lista: Property[] | Task[]): string {
+  gerarID(lista: Property[] | Task[] | Tasks_Properties[]): string {
     const ultimoElemento = lista[lista.length - 1];
     let id = 0;
     if (ultimoElemento) {
@@ -255,7 +270,7 @@ export class TarefasComponent implements OnInit {
     } else{
       this.tarefaSendoManipulada = new Task();
       this.modalManipularTarefaCadastro = true;
-      this.tarefaSendoManipulada.properties = this.listaPropriedades;
+      this.tarefaSendoManipulada.properties = this.setarPropriedadesProjeto(this.tarefaSendoManipulada.id);
     }
     this.modalManipularTarefa = true;
   }
@@ -272,9 +287,10 @@ export class TarefasComponent implements OnInit {
     this.setTarefas();
   }
   adicionaTarefa():void{
+    let novoID: string = this.gerarID(this.listaTarefas);
     const novaTarefa: Task = {
-      id: this.gerarID(this.listaTarefas),
-      properties: this.getPropriedades()
+      id: novoID,
+      properties: this.setarPropriedadesProjeto(novoID),
     };
     this.listaTarefas.push(novaTarefa);
     console.log(novaTarefa.properties);
@@ -329,6 +345,29 @@ export class TarefasComponent implements OnInit {
   }
 
 
+
+
+
+  //SET Propriedade Default
+  setarPropriedadesProjeto(idTarefa:string):Tasks_Properties[] {
+    let listaTarefaPropriedade: Tasks_Properties[] = [];
+    let tarefa: Task = this.listaTarefas.find( (tarefa) =>  tarefa.id == idTarefa );
+    if(tarefa){
+      this.listaPropriedades.forEach( (propriedade) => {
+        let tarefa_propriedade: Tasks_Properties = {
+          id: this.gerarID(tarefa.properties),
+          valor: "",
+          taskID: tarefa.id,
+          propertyID: propriedade.id,
+        }
+        if(propriedade.id == tarefa_propriedade.propertyID){
+          listaTarefaPropriedade.push(tarefa_propriedade);
+        }
+      });
+    }
+    console.log(listaTarefaPropriedade);
+    return listaTarefaPropriedade;
+  }
 
   //LOCAL STORAGE (FUTURA API)
   setPropriedades(): void {

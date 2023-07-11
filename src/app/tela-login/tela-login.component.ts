@@ -28,7 +28,9 @@ export class TelaLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    if(this.userService.getLoggedUser() != null){
+      this.router.navigate(['/Tarefas']);
+    }
   }
 
   requestUsuario(): void{

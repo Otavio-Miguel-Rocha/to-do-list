@@ -12,6 +12,7 @@ import { AuthGuardService } from 'src/services/auth-guard.service';
 import { FormsModule } from "@angular/forms";
 import { TelaRegisterComponent } from './tela-register/tela-register.component';
 import { UserService } from "src/services/user.service";
+import { TaskRepository } from "src/repositories/task.repository";
 
 @NgModule({
   declarations: [AppComponent, TelaLoginComponent, NavegacaoComponent, TelaRegisterComponent],
@@ -19,7 +20,8 @@ import { UserService } from "src/services/user.service";
   providers: [
     UserRepository,
     AuthGuardService,
-    UserService
+    UserService,
+    TaskRepository
   ],
   bootstrap: [AppComponent],
 })
